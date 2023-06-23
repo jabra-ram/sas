@@ -1,0 +1,10 @@
+<div class="w-25 mx-auto p-4 mt-5 bg-secondary text-light">
+  <h1 class="text-center"> Invite Admin </h1>
+  <%= form_with model: @invitation, url: invitations_path do |f|%>
+    <div class="mb-3">
+      <%= f.label :email, class:"form-label" %>
+      <%= f.email_field :email, class:"form-control" %>
+    </div>
+    <%= f.submit "Send Invitation Link", class:"btn btn-primary"%>
+  <% end %>
+</div>

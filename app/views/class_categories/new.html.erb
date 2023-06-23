@@ -1,0 +1,14 @@
+<div class="w-25 mx-auto p-4 mt-5 text-dark border border-dark">
+  <h1 class="text-center"> Add Class</h1>
+  <%= form_with model: @class_category do |f|%>
+    <div class="mb-3">
+      <%= f.label :classname, class:"form-label" %>
+      <%= f.number_field :classname, class:"form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :section_id, class:"form-label" %>
+      <%= f.select :section_id, Section.pluck('section', 'id'), class:"form-select" %>
+    </div>
+    <%= f.submit "Add", class:"btn btn-primary"%>
+  <% end %>
+</div>

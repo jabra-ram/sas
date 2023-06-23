@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Invitation to Admin App</h1>
+  <p>Hello,</p>
+  <p>You have been invited to join the Admin App. Please click the link below to complete your sign-up process:</p>
+  <p><a href="<%= invite_admin_url(@invitation.token) %>">Complete Sign-up</a></p>
+  <p>This invitation link will be valid for 24 hours.</p>
+  <p>If you did not request this invitation, please ignore this email.</p>
+</body>
+</html>

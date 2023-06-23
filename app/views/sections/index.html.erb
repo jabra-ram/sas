@@ -1,0 +1,20 @@
+<div class="container">
+  <%= link_to "Add Section", new_section_path, class:"btn btn-info"%>
+  <h1 class="text-center"> Sections </h1>
+  <table class="table table-hover container">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">section</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sections.each_with_index do |section, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= section.section %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
