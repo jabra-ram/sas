@@ -1,0 +1,32 @@
+<div class="w-50  mx-auto p-4 mt-5 text-dark border border-dark">
+  <h1 class="text-center"> Add Fee Structure</h1>
+  <%= form_with model: @fee_structure do |f|%>
+    <div class="row g-3">
+      <div class="mb-3 col-md-6">
+        <%= f.label :admission_fees, class:"form-label" %>
+        <%= f.number_field :admission_fees, class:"form-control", id:"admission-fees" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :annual_admission_fees, class:"form-label" %>
+        <%= f.number_field :annual_admission_fees, class:"form-control", id:"annual-admission-fees" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :caution_money, class:"form-label" %>
+        <%= f.number_field :caution_money, class:"form-control", id:"caution-money" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :quarterly_tuition_fees, class:"form-label" %>
+        <%= f.number_field :quarterly_tuition_fees, class:"form-control", id:"quartly-tuition-fees" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :id_card_fees, class:"form-label" %>
+        <%= f.number_field :id_card_fees, class:"form-control", id:"id-card-fees" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :total, class:"form-label" %>
+        <%= f.number_field :total, class:"form-control", id:"total-fees", readonly: true%>
+      </div>
+      <%= f.submit "Add", class:"btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

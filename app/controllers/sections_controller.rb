@@ -15,7 +15,14 @@ class SectionsController < ApplicationController
             render "new", alert:"Enter correct details please!"
         end
     end
-
+    def destroy 
+        @section = Section.find(params[:id])
+        if @section.destroy
+            redirect_to sections_path, notice:"Section deleted successfully!"
+        else 
+            render "new", alert:"Something went wrong!!!"
+        end
+    end
     private
         def section_params
             params.require(:section).permit(:section)

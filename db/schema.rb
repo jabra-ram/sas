@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_23_102311) do
+ActiveRecord::Schema.define(version: 2023_06_24_112525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2023_06_23_102311) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["section_id"], name: "index_class_categories_on_section_id"
+  end
+
+  create_table "fee_structures", force: :cascade do |t|
+    t.integer "admission_fees"
+    t.integer "annual_admission_fees"
+    t.integer "caution_money"
+    t.integer "quarterly_tuition_fees"
+    t.integer "id_card_fees"
+    t.integer "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "invitations", force: :cascade do |t|

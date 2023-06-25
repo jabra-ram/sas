@@ -10,7 +10,7 @@ class ClassCategoriesController < ApplicationController
   def create 
     @class_category = ClassCategory.new(class_category_params)
     if @class_category.save 
-      direct_to class_categories_path, notice:"Class created successfully!"
+      redirect_to class_categories_path, notice:"Class created successfully!"
     else
       render "new", alert:"Enter correct details!!!"
     end
