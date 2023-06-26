@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  class_category: 
+  date_of_birth_after: 
+  date_of_birth_before: 
+  age: 
+  date_as_on: 2023-06-26
+
+two:
+  class_category: 
+  date_of_birth_after: 
+  date_of_birth_before: 
+  age: 
+  date_as_on: 2023-06-26

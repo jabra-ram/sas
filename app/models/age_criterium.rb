@@ -1,0 +1,2 @@
+class AgeCriterium < ApplicationRecord
+end

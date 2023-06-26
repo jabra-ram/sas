@@ -16,7 +16,7 @@
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :quarterly_tuition_fees, class:"form-label" %>
-        <%= f.number_field :quarterly_tuition_fees, class:"form-control", id:"quartly-tuition-fees" %>
+        <%= f.number_field :quarterly_tuition_fees, class:"form-control", id:"quarterly-tuition-fees" %>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :id_card_fees, class:"form-label" %>
@@ -30,3 +30,4 @@
     </div>
   <% end %>
 </div>
+<%= javascript_pack_tag 'fee_structure' %>
