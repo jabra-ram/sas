@@ -1,0 +1,48 @@
+<div class="container">
+  <%= link_to "Add Student", new_student_path, class:"btn btn-info"%>
+  <h1 class="text-center"> Students </h1>
+  <table class="table table-hover container">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Name</th>
+        <th scrope="col">Date of birth</th>
+        <th scrope="col">Age</th>
+        <th scrope="col">Class</th>
+        <th scrope="col">Academic Year</th>
+        <th scrope="col">Father's Name</th>
+        <th scrope="col">Mother's Name</th>
+        <th scrope="col">Address</th>
+        <th scrope="col">Contact</th>
+        <th scrope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each_with_index do |s, index| %>
+        <tr>
+          <td><%= index+1 %></td>
+          <% if s.photo.attached? %>
+            <td><%= image_tag s.photo %></td>
+          <% else %>
+            <td>no image</td>
+          <% end %>
+          <td><%= s.name %></td>
+          <td><%= s.date_of_birth %></td>
+          <td><%= s.age %></td>
+          <td><%= s.classname %></td>
+          <td><%= s.academic_year %></td>
+          <td><%= s.father_name %></td>
+          <td><%= s.mother_name %></td>
+          <td><%= s.address %></td>
+          <td><%= s.contact_number %></td>
+          <td>
+           <%= form_with model: @student, url: student_path(s), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
+              <%= f.submit "Delete", class:"btn, btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

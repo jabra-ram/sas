@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :admins, only:[:index]
   resources :invitations, only:[:new, :create]
-  resources :sections, :class_categories, :fee_structures,:age_criteria
+  resources :sections, :class_categories, :fee_structures,:age_criteria, :students
 
   get '/', to:"sessions#new"
   get 'login',  to:"sessions#new", as: "login"

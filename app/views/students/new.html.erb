@@ -1,0 +1,59 @@
+<div class="w-50 mx-auto p-4 mt-5 text-dark border border-dark">
+  <h1 class="text-center"> Add Student </h1>
+  <%= form_with model: @student do |f|%>
+    <div class="row g-3">
+      <div class="mb-3 col-md-6">
+        <%= f.label :name, class:"form-label" %><br>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :date_of_birth, class:"form-label" %><br>
+        <%= f.date_field :date_of_birth, class:"form-control", id:"date-of-birth" %>
+      </div>
+      <div class="mb-3 col-md-4">
+        <%= f.label :age, class:"form-label" %><br>
+        <%= f.number_field :age, class:"form-control", readonly:true, id:"age"%>
+      </div>
+      <div class="mb-3 col-md-4">
+        <%= f.label :classname, "Class", class:"form-label" %><br>
+        <%= f.select :classname, ClassCategory.distinct.pluck('classname'), class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-4">
+        <%= f.label :academic_year, class:"form-label" %><br>
+        <%= f.number_field :academic_year, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :father_name, class:"form-label" %><br>
+        <%= f.text_field :father_name, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :mother_name, class:"form-label" %><br>
+        <%= f.text_field :mother_name, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :address, class:"form-label" %><br>
+        <%= f.text_field :address, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :contact_number, class:"form-label" %><br>
+        <%= f.number_field :contact_number, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :photo, class:"form-label" %><br>
+        <%= f.file_field :photo, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.label :docs, class:"form-label" %><br>
+        <%= f.file_field :docs, class:"form-control", multiple: true %>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= f.submit "Save", class:"btn btn-primary w-100"%>
+      </div>
+      <div class="mb-3 col-md-6">
+        <%= link_to "Cancel", new_student_path, class:"btn btn-danger w-100"%>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= javascript_pack_tag 'student' %>
