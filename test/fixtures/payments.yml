@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_name: MyString
+  email: MyString
+  classname: 1
+  academic_year: 1
+  address: MyText
+  contact_number: 1
+  mode_of_payment: 1
+  amount: 1
+  status: 1
+  notes: MyText
+
+two:
+  student_name: MyString
+  email: MyString
+  classname: 1
+  academic_year: 1
+  address: MyText
+  contact_number: 1
+  mode_of_payment: 1
+  amount: 1
+  status: 1
+  notes: MyText

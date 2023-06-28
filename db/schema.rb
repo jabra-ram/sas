@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_27_064455) do
+ActiveRecord::Schema.define(version: 2023_06_27_113043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,21 @@ ActiveRecord::Schema.define(version: 2023_06_27_064455) do
     t.string "email"
     t.string "token"
     t.datetime "expires_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "student_name"
+    t.string "email"
+    t.integer "classname"
+    t.integer "academic_year"
+    t.text "address"
+    t.integer "contact_number"
+    t.integer "mode_of_payment"
+    t.integer "amount"
+    t.integer "status"
+    t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
