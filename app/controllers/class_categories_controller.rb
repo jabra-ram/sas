@@ -9,7 +9,17 @@ class ClassCategoriesController < ApplicationController
   end
   def create 
     @class_category = ClassCategory.new(class_category_params)
-    if @class_category.save 
+    c = ClassCategory.find_by(classname: params[:class_category][:classname])
+    @section = Section.find(params[:class_category][:section_id])
+    if c
+      if c.sections.where(id: @section.id).empty? == false
+        redirect_to class_categories_path, notice:"Section already exist in class!"
+      else
+        c.sections << @section
+        redirect_to class_categories_path, notice:"Section added to class!"
+      end
+    elsif @class_category.save
+      @class_category.sections << @section
       redirect_to class_categories_path, notice:"Class created successfully!"
     else
       render "new", alert:"Enter correct details!!!"
@@ -25,6 +35,6 @@ class ClassCategoriesController < ApplicationController
   end
   private
     def class_category_params
-      params.require(:class_category).permit(:classname,:section_id)
+      params.require(:class_category).permit(:classname)
     end
 end

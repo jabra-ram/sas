@@ -4,7 +4,7 @@
     <div class="row g-3">
       <div class="mb-3">
         <%= f.label :classname, "Class", class:"form-label" %>
-        <%= f.select :classname, ClassCategory.distinct.pluck('classname'), class:"form-control" %>
+        <%= f.select :classname, ClassCategory.pluck('classname','id'), class:"form-control" %>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :date_of_birth_after, class:"form-label" %>

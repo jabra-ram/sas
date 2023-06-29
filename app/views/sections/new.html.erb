@@ -4,6 +4,9 @@
     <div class="mb-3">
       <%= f.label :section, class:"form-label" %><br>
       <%= f.text_field :section, class:"form-control" %>
+      <% @section.errors.full_messages.each do |msg| %>
+        <p class="text-danger"><%= msg %></p>
+      <% end %>
     </div>
     <%= f.submit "Add", class:"btn btn-primary"%>
   <% end %>
