@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_27_113043) do
+ActiveRecord::Schema.define(version: 2023_06_29_064737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,12 +57,19 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
     t.date "date_as_on"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "class_category_id"
+    t.index ["class_category_id"], name: "index_age_criteria_on_class_category_id"
   end
 
   create_table "class_categories", force: :cascade do |t|
     t.integer "classname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "class_sections", id: false, force: :cascade do |t|
+    t.bigint "class_category_id", null: false
+    t.bigint "section_id", null: false
   end
 
   create_table "fee_structures", force: :cascade do |t|
@@ -74,6 +81,8 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "class_category_id"
+    t.index ["class_category_id"], name: "index_fee_structures_on_class_category_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -97,6 +106,8 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "student_id"
+    t.index ["student_id"], name: "index_payments_on_student_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -117,8 +128,17 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
     t.bigint "contact_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "class_category_id"
+    t.bigint "section_id"
+    t.index ["class_category_id"], name: "index_students_on_class_category_id"
+    t.index ["section_id"], name: "index_students_on_section_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "age_criteria", "class_categories"
+  add_foreign_key "fee_structures", "class_categories"
+  add_foreign_key "payments", "students"
+  add_foreign_key "students", "class_categories"
+  add_foreign_key "students", "sections"
 end
