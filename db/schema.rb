@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
   end
 
   create_table "age_criteria", force: :cascade do |t|
-    t.integer "classname"
     t.date "date_of_birth_after"
     t.date "date_of_birth_before"
     t.integer "age"
@@ -62,10 +61,8 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
 
   create_table "class_categories", force: :cascade do |t|
     t.integer "classname"
-    t.bigint "section_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["section_id"], name: "index_class_categories_on_section_id"
   end
 
   create_table "fee_structures", force: :cascade do |t|
@@ -110,9 +107,9 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
+    t.string "email"
     t.date "date_of_birth"
     t.integer "age"
-    t.integer "classname"
     t.integer "academic_year"
     t.string "father_name"
     t.string "mother_name"
@@ -124,5 +121,4 @@ ActiveRecord::Schema.define(version: 2023_06_27_113043) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "class_categories", "sections"
 end
