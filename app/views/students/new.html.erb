@@ -7,6 +7,10 @@
         <%= f.text_field :name, class:"form-control" %>
       </div>
       <div class="mb-3 col-md-6">
+        <%= f.label :email, class:"form-label" %><br>
+        <%= f.email_field :email, class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
         <%= f.label :date_of_birth, class:"form-label" %><br>
         <%= f.date_field :date_of_birth, class:"form-control", id:"date-of-birth" %>
       </div>
@@ -15,8 +19,12 @@
         <%= f.number_field :age, class:"form-control", readonly:true, id:"age"%>
       </div>
       <div class="mb-3 col-md-4">
-        <%= f.label :classname, "Class", class:"form-label" %><br>
-        <%= f.select :classname, ClassCategory.distinct.pluck('classname'), class:"form-control" %>
+        <%= f.label :class_category_id, "Class", class:"form-label" %><br>
+        <%= f.select :class_category_id, ClassCategory.pluck('classname', 'id'), class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-4">
+        <%= f.label :section_id, "Section", class:"form-label" %><br>
+        <%= f.select :section_id, Section.pluck('section', 'id'), class:"form-control" %>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :academic_year, class:"form-label" %><br>

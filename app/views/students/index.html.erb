@@ -5,11 +5,12 @@
     <thead>
       <tr>
         <th scope="col">S.No.</th>
-        <th scope="col">Photo</th>
         <th scope="col">Name</th>
+        <th scope="col">Email</th>
         <th scope="col">Date of birth</th>
         <th scope="col">Age</th>
         <th scope="col">Class</th>
+        <th scope="col">Section</th>
         <th scope="col">Academic Year</th>
         <th scope="col">Father's Name</th>
         <th scope="col">Mother's Name</th>
@@ -22,15 +23,12 @@
       <% @students.each_with_index do |s, index| %>
         <tr>
           <td><%= index+1 %></td>
-          <% if s.photo.attached? %>
-            <td><%= image_tag s.photo %></td>
-          <% else %>
-            <td>no image</td>
-          <% end %>
           <td><%= s.name %></td>
+          <td><%= s.email %></td>
           <td><%= s.date_of_birth %></td>
           <td><%= s.age %></td>
-          <td><%= s.classname %></td>
+          <td><%= s.class_category[:classname] %></td>
+          <td><%= s.section[:section] %></td>
           <td><%= s.academic_year %></td>
           <td><%= s.father_name %></td>
           <td><%= s.mother_name %></td>

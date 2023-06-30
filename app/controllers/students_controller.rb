@@ -7,9 +7,9 @@ class StudentsController < ApplicationController
     end
     def create 
         @student = Student.new(student_params)
-        @student.photo.attach(params[:student][:photo])
-        @student.docs.attach(params[:student][:docs])
         if @student.save
+            @student.photo.attach(params[:student][:photo])
+            @student.docs.attach(params[:student][:docs])
             redirect_to students_path, notice:"Record saved!"
         else
             render "new", alert:"Something went wrong!!!"
@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
 
     private 
         def student_params
-            params.require(:student).permit(:name, :date_of_birth, :age, :classname, :academic_year, :father_name, :mother_name, :address, :contact_number)
+            params.require(:student).permit(:name, :email, :date_of_birth, :age, :class_category_id, :section_id, :academic_year, :father_name, :mother_name, :address, :contact_number)
         end
 
 end
