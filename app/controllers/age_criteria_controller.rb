@@ -8,7 +8,9 @@ class AgeCriteriaController < ApplicationController
     end
     def create
         @age_criteria = AgeCriterium.new(age_criteria_params)
-        if @age_criteria.save
+        if AgeCriterium.where(class_category_id: params[:age_criterium][:class_category_id]).empty? == false
+            redirect_to age_criteria_path, notice:"Age criteria already exist for this class!"
+        elsif @age_criteria.save
             redirect_to age_criteria_path, notice:"Criteria added!"
         else 
             render "new", alert:"Something went wrong!!!"
@@ -24,6 +26,6 @@ class AgeCriteriaController < ApplicationController
     end
     private
         def age_criteria_params
-            params.require(:age_criterium).permit(:classname, :date_of_birth_after, :date_of_birth_before, :age, :date_as_on)
+            params.require(:age_criterium).permit(:class_category_id, :date_of_birth_after, :date_of_birth_before, :age, :date_as_on)
         end
 end

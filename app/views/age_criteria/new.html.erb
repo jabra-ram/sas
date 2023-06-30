@@ -3,16 +3,16 @@
   <%= form_with model: @age_criteria do |f|%>
     <div class="row g-3">
       <div class="mb-3">
-        <%= f.label :classname, "Class", class:"form-label" %>
-        <%= f.select :classname, ClassCategory.pluck('classname','id'), class:"form-control" %>
+        <%= f.label :class_category_id, "Class", class:"form-label" %>
+        <%= f.select :class_category_id, ClassCategory.pluck('classname','id'), class:"form-control" %>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :date_of_birth_after, class:"form-label" %>
-        <%= f.date_field :date_of_birth_after, class:"form-control", id:"date-of-birth-after" %>
+        <%= f.date_field :date_of_birth_after, class:"form-control"%>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :date_of_birth_before, class:"form-label" %>
-        <%= f.date_field :date_of_birth_before, class:"form-control" %>
+        <%= f.date_field :date_of_birth_before, class:"form-control", id:"date-of-birth-before" %>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :age, class:"form-label" %>
