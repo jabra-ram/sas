@@ -8,7 +8,9 @@ class FeeStructuresController < ApplicationController
     end
     def create 
         @fee_structure = FeeStructure.new(fee_structure_params)
-        if @fee_structure.save
+        if FeeStructure.where(class_category_id: params[:fee_structure][:class_category_id]).empty? == false
+            redirect_to fee_structures_path, alert:"Fee Structure already exist for this class!"
+        elsif @fee_structure.save
             redirect_to fee_structures_path, notice:"Data Added successfully!"
         else
             render "new", alert:"Enter Correct details!!!"
@@ -25,6 +27,6 @@ class FeeStructuresController < ApplicationController
     
     private
         def fee_structure_params
-            params.require(:fee_structure).permit(:admission_fees,:annual_admission_fees,:caution_money,:quarterly_tuition_fees,:id_card_fees,:total)
+            params.require(:fee_structure).permit(:class_category_id,:admission_fees,:annual_admission_fees,:caution_money,:quarterly_tuition_fees,:id_card_fees,:total)
         end
 end

@@ -3,6 +3,10 @@
   <%= form_with model: @fee_structure do |f|%>
     <div class="row g-3">
       <div class="mb-3 col-md-6">
+        <%= f.label :class_category_id, "Class", class:"form-label" %>
+        <%= f.select :class_category_id, ClassCategory.pluck('classname','id'), class:"form-control" %>
+      </div>
+      <div class="mb-3 col-md-6">
         <%= f.label :admission_fees, class:"form-label" %>
         <%= f.number_field :admission_fees, class:"form-control", id:"admission-fees" %>
       </div>
