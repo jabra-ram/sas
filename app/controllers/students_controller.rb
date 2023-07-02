@@ -5,6 +5,12 @@ class StudentsController < ApplicationController
     def new
         @student = Student.new
     end
+    def show
+        @student = Student.find(params[:id])
+        respond_to do |format|
+            format.json { render json: @student }
+        end
+    end
     def create 
         @student = Student.new(student_params)
         if @student.save

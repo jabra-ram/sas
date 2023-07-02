@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+    include PaymentsHelper
     def index 
         @payments = Payment.all 
     end
@@ -8,28 +9,32 @@ class PaymentsController < ApplicationController
     def create 
         @payment = Payment.new(payment_params)
         if @payment.save
-            redirect_to payments_path, notice:"Record saved!"
+            redirect_to payments_path, notice:'Record saved!'
         else
-            render "new", alert:"Something went wrong!!!"
+            render 'new', alert:'Something went wrong!!!'
         end
     end
     def destroy
         @payment = Payment.find(params[:id])
         if @payment.destroy
-            redirect_to payments_path, notice:"Record deleted!"
+            redirect_to payments_path, notice:'Record deleted!'
         else
-            render "new", alert:"Something went wrong!!!"
+            render 'new', alert:'Something went wrong!!!'
         end
     end 
     def generate_invoice
         @payment = Payment.find(params[:id])
-        pdf = Prawn::Document.new
-        pdf.text "hello world"
-        send_data(pdf.render, filename:"invoice.pdf", type:"application/pdf")
+        pdf = invoice_pdf(@payment)
+        send_data(pdf.render, filename:'invoice.pdf', type:'application/pdf', disposition:'inline')
     end
-
+    def email_invoice
+        @payment = Payment.find(params[:id])
+        pdf = invoice_pdf(@payment)
+        InvoiceMailer.with(student: @payment.student, invoice: pdf).invoice_email.deliver_now
+        redirect_to payments_path, notice:"Invoice mail sent to student!"
+    end
     private 
         def payment_params
-            params.require(:payment).permit(:student_name, :email, :classname, :academic_year, :address, :contact_number, :mode_of_payment, :amount, :status, :notes)
+            params.require(:payment).permit(:student_id, :mode_of_payment, :amount, :status, :notes)
         end
 end

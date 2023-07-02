@@ -2,29 +2,33 @@
   <h1 class="text-center"> Add Payment </h1>
   <%= form_with model: @payment do |f|%>
     <div class="row g-3">
-      <div class="mb-3 col-md-6">
-        <%= f.label :student_name, class:"form-label" %><br>
-        <%= f.text_field :student_name, class:"form-control" %>
+      <div class="mb-3 col-md-4">
+        <%= f.label :student_id, "Student Id", class:"form-label" %><br>
+        <%= f.number_field :student_id, class:"form-control" %>
       </div>
-      <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-4">
+        <%= f.label :name, class:"form-label" %><br>
+        <%= f.text_field :name, class:"form-control", readonly:true %>
+      </div>
+      <div class="mb-3 col-md-4">
         <%= f.label :email, class:"form-label" %><br>
-        <%= f.email_field :email, class:"form-control"%>
+        <%= f.email_field :email, class:"form-control", readonly:true %>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :academic_year, class:"form-label" %><br>
-        <%= f.number_field :academic_year, class:"form-control"%>
+        <%= f.number_field :academic_year, class:"form-control", readonly:true %>
       </div>
       <div class="mb-3 col-md-4">
-        <%= f.label :classname, "Class", class:"form-label" %><br>
-        <%= f.select :classname, ClassCategory.distinct.pluck('classname'), class:"form-select" %>
+        <%= f.label :date_of_birth, class:"form-label" %><br>
+        <%= f.date_field :date_of_birth, class:"form-control", readonly:true %>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :contact_number, class:"form-label" %><br>
-        <%= f.number_field :contact_number, class:"form-control" %>
+        <%= f.number_field :contact_number, class:"form-control", readonly:true %>
       </div>
       <div class="mb-3 col-md-12">
         <%= f.label :address, class:"form-label" %><br>
-        <%= f.text_field :address, class:"form-control" %>
+        <%= f.text_field :address, class:"form-control", readonly:true %>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :mode_of_payment, class:"form-label" %><br>
@@ -46,3 +50,4 @@
     </div>
   <% end %>
 </div>
+<%= javascript_pack_tag 'payment' %>
