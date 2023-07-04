@@ -39,6 +39,11 @@
           <td>
             <%= link_to 'Email', email_invoice_path(p), class:'btn btn-secondary' %>
           </td>
+          <td>
+           <%= form_with model: @payment, url: payment_path(p), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
+              <%= f.submit "Delete", class:"btn, btn-danger" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

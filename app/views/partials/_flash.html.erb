@@ -1,0 +1,24 @@
+<% if flash.notice || flash.alert %>
+  <div class="modal flash-modal" id="flashModal" tabindex="-1" role="dialog" aria-labelledby="flashModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <% if flash.notice %>
+        <div class="alert alert-success text-center">
+          <%= flash.notice %>
+        </div>
+      <% end %>
+      <% if flash.alert %>
+        <div class="alert alert-danger text-center">
+          <%= flash.alert %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('#flashModal').modal('show');
+      setTimeout(function() {
+        $('#flashModal').modal('hide');
+      }, 2000);
+    });
+  </script>
+<% end %>

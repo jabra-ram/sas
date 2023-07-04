@@ -9,6 +9,15 @@ class PaymentsController < ApplicationController
     def create 
         @payment = Payment.new(payment_params)
         if @payment.save
+            if @payment[:status]=='Rejected' || @payment[:status]=='Pending'
+                message = "The payment status of #{@payment.student[:name]} is set to #{@payment[:status]} by #{current_admin[:email]}"
+                ActionCable.server.broadcast('notification_channel', message)
+                Admin.all.each do |admin|
+                    if admin!=current_admin
+                        Notification.create(recipient_id:admin[:id], sender_id:current_admin[:id], message:message, read_status: false)
+                    end
+                end
+            end
             redirect_to payments_path, notice:'Record saved!'
         else
             render 'new', alert:'Something went wrong!!!'

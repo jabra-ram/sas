@@ -30,6 +30,10 @@ class AdminsController < ApplicationController
             render "invite"
         end
     end 
+    def mark_read
+        current_admin.notifications.unread.update(read_status: true)
+        redirect_to admins_path
+    end
 
     def admin_params
         params.require(:admin).permit(:email, :password, :password_confirmation)
