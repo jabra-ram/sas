@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(token: params['authenticity_token'], email: params[:invitation][:email], expires_at:24.hours.from_now)
+    @invitation = Invitation.new(token: SecureRandom.urlsafe_base64, email: params[:invitation][:email], expires_at:24.hours.from_now)
     
     if @invitation.save
       AdminMailer.with(invitation: @invitation).invite_email.deliver_now

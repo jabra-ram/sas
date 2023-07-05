@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   get '/admins/invite/:token', to: "admins#invite", as: "invite_admin"
   post '/admins/invite/:token', to: "admins#process_invite"
-  get '/markread', to: "admins#mark_read", as:"mark_read"
+  post '/markread', to: "admins#mark_read", as:"mark_read"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

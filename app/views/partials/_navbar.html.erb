@@ -28,7 +28,7 @@
         </div>
         <div class="modal-body">
           <% if current_admin %>
-            <%= link_to "Mark All as Read", mark_read_path, class: "btn btn-primary"%>
+            <button class="btn btn-primary" id="mark-read-btn">Mark All as Read</button>
             <div id="notifications-container">
               <% current_admin.notifications.unread.each do |n| %>
                 <div class="notification-item"> <%= n[:message] %> </div>
@@ -40,3 +40,4 @@
     </div>
   </div>
 </nav>
+<%= javascript_pack_tag 'notification' %>

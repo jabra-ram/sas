@@ -1,5 +1,5 @@
 let x = $("#payment_student_id");
-x.change(function(){
+x.on('change', function(){
     $.ajax({
         url: `/students/${x.val()}`,
         type: 'GET',

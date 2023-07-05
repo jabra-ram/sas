@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
     before_action :authorize, only:[:index]
-
+    skip_before_action :verify_authenticity_token, only: :mark_read
     def index
     end
 
@@ -32,7 +32,7 @@ class AdminsController < ApplicationController
     end 
     def mark_read
         current_admin.notifications.unread.update(read_status: true)
-        redirect_to admins_path
+        render json: { message: 'All notifications marked as read' }
     end
 
     def admin_params
