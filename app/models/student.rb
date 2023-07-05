@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   has_one_attached :photo
   has_many_attached :docs
   belongs_to :class_category

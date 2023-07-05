@@ -59,3 +59,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '>= 5.0.0'
 gem 'prawn', '~> 2.1'
 gem 'prawn-table', '~> 0.1.0'
+
+gem 'elasticsearch', '~>7.17.7'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
