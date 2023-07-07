@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :admins, only:[:index]
   resources :invitations, only:[:new, :create]
-  resources :sections, :class_categories, :fee_structures,:age_criteria, :students, :payments
+  resources :sections, :class_categories, :fee_structures,:age_criteria, :payments
+  resources :students do
+    collection do
+      get :search
+    end
+  end
 
   get '/', to:"sessions#new"
   get 'login',  to:"sessions#new", as: "login"

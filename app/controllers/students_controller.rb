@@ -29,6 +29,12 @@ class StudentsController < ApplicationController
             render "new", alert:"Something went wrong!!!"
         end
     end 
+    def search 
+        query = params[:search_students].presence && params[:search_students][:query]
+        if query
+            @students = Student.search_query(query)
+        end
+    end
 
     private 
         def student_params

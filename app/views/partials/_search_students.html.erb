@@ -1,0 +1,6 @@
+<%= form_for :search_students, url: search_students_path, method: :get do |form| %>
+  <div class="mb-3 d-flex">
+    <%= form.text_field :query, value: params[:search_students].presence && params[:search_students][:query], class:"form-control mx-2"%>
+    <%= form.submit 'Search', class:"btn btn-outline-success" %>
+  </div>
+<% end %>
