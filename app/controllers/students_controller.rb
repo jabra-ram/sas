@@ -31,8 +31,11 @@ class StudentsController < ApplicationController
     end 
     def search 
         query = params[:search_students].presence && params[:search_students][:query]
+        filter_column = params[:search_students].presence && params[:search_students][:filter_column]
+        filter_value = params[:search_students].presence && params[:search_students][:filter_value]
+        sort_by = params[:search_students].presence && params[:search_students][:sort_by]
         if query
-            @students = Student.search_query(query)
+            @students = Student.search_query(query, filter_column, filter_value, sort_by)
         end
     end
 

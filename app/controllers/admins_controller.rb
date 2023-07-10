@@ -21,7 +21,7 @@ class AdminsController < ApplicationController
         @admin = Admin.new(email: @invitation.email, password: params[:admin][:password], password_confirmation: params[:admin][:password_confirmation])
       
         if @admin.save
-            AdminMailer.with(admin: @admin).confirmation_email.deliver_now
+            AdminMailer.with(admin: @admin).confirmation_email.deliver_later
             @invitation.destroy
             flash[:notice] = "Thank you for signing up! You can login now."
             redirect_to login_path

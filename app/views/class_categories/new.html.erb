@@ -7,7 +7,7 @@
     </div>
     <div class="mb-3">
       <%= f.label :section_id, class:"form-label" %>
-      <%= f.select :section_id, Section.pluck('section','id'), class:"form-select" %>
+      <%= f.select :section_id, Section.pluck('section','id'),{}, class:"form-select" %>
     </div>
     <%= f.submit "Add", class:"btn btn-primary"%>
   <% end %>

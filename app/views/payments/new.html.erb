@@ -32,7 +32,7 @@
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :mode_of_payment, class:"form-label" %><br>
-        <%= f.select :mode_of_payment, Payment.mode_of_payments.keys, class:"form-select" %>
+        <%= f.select :mode_of_payment, Payment.mode_of_payments.keys, {}, class:"form-select" %>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :amount, class:"form-label" %><br>
@@ -40,7 +40,7 @@
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :status, class:"form-label" %><br>
-        <%= f.select :status, Payment.statuses.keys, class:"form-select" %>
+        <%= f.select :status, Payment.statuses.keys, {}, class:"form-select" %>
       </div>
       <div class="mb-3 col-md-12">
         <%= f.label :notes, class:"form-label" %><br>

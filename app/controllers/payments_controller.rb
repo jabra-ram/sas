@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
     def email_invoice
         @payment = Payment.find(params[:id])
         pdf = invoice_pdf(@payment)
-        InvoiceMailer.with(student: @payment.student, invoice: pdf).invoice_email.deliver_now
+        InvoiceMailer.with(student: @payment.student, invoice: pdf).invoice_email.deliver_later
         redirect_to payments_path, notice:"Invoice mail sent to student!"
     end
     private 

@@ -23,10 +23,16 @@ class Student < ApplicationRecord
   end
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'true' do
-      indexes :name, type: :text, analyzer: :english
-      indexes :email, type: :text, analyzer: :english
-      indexes :academic_year, type: :text, analyzer: :english
+      indexes :name, type: :text, analyzer: :english, fielddata: :true
+      indexes :email, type: :text, analyzer: :english, fielddata: :true
+      indexes :academic_year, type: :text, analyzer: :english, fielddata: :true
       indexes :address, type: :text, analyzer: :english
+      indexes :father_name, type: :text, analyzer: :english, fielddata: :true
+      indexes :mother_name, type: :text, analyzer: :english
+      indexes :contact_number, type: :text, analyzer: :english
+      indexes :classname, type: :keyword
+      indexes :section, type: :keyword
+
     end
   end
   def as_indexed_json(_options = {})
@@ -41,23 +47,45 @@ class Student < ApplicationRecord
       section_id: section_id,
       father_name: father_name,
       mother_name: mother_name,
-      contact_number: contact_number
+      contact_number: contact_number,
+      classname: class_category.classname,
+      section: section.section
     }
   end
-  def self.search_query(query)  
-    search({
+  def self.search_query(query, filter_column, filter_value, sort_by)
+    search_params = {
       query: {
         bool: {
           must: [
-          {
-            multi_match: {
-              query: query,
-              fields: [:name, :email, :address, :academic_year]
+            {
+              multi_match: {
+                query: query,
+                fields: [:name, :email, :address, :academic_year, :father_name, :mother_name, :contact_number]
+              }
             }
-          }]
+          ]
         }
       }
-    })
+    }
+  
+    if !filter_column.empty? && !filter_value.empty?
+      search_params[:query][:bool][:filter] = {
+        term: {
+          filter_column.to_sym => filter_value
+        }
+      }
+    end
+  
+    if sort_by && !sort_by.empty?
+      search_params[:sort] = {
+        sort_by.to_sym => {
+          order: :asc
+        }
+      }
+    end
+    puts search_params
+    search(search_params)
   end
+  
   index_data
 end
