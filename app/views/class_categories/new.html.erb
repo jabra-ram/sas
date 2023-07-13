@@ -2,11 +2,11 @@
   <h1 class="text-center"> Add Class</h1>
   <%= form_with model: @class_category do |f|%>
     <div class="mb-3">
-      <%= f.label :classname, class:"form-label" %>
+      <%= f.label :classname, class:"form-label required" %>
       <%= f.number_field :classname, class:"form-control" %>
     </div>
     <div class="mb-3">
-      <%= f.label :section_id, class:"form-label" %>
+      <%= f.label :section_id, class:"form-label required" %>
       <%= f.select :section_id, Section.pluck('section','id'),{}, class:"form-select" %>
     </div>
     <%= f.submit "Add", class:"btn btn-primary"%>

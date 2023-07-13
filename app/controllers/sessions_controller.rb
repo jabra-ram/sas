@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
     def new 
         if current_admin
-            flash[:notice] = "You are already logged in!"
-            redirect_to admins_path
+            redirect_to admins_path, notice:"You are already logged in!"
         end
         @admin = Admin.new
     end
@@ -12,11 +11,9 @@ class SessionsController < ApplicationController
         
         if @admin && @admin.authenticate(params[:password])
             session[:admin_id] = @admin.id 
-            flash[:notice] = "Logged In"
-            redirect_to admins_path
+            redirect_to admins_path, notice:"Logged In"
         else 
-            flash.now[:alert] = "Incorrect email or password!"
-            render "new"
+            render :new, alert:"Incorrect email or password!"
         end
     end
 

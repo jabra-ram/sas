@@ -1,7 +1,7 @@
 <div class="container">
   <%= link_to "Add fee structure", new_fee_structure_path, class:"btn btn-info"%>
   <h1 class="text-center"> Fee Structures </h1>
-  <table class="table table-hover container">
+  <table class="table table-hover container table-bordered text-center">
     <thead>
       <tr>
         <th scope="col">S.No.</th>
@@ -12,6 +12,7 @@
         <th scope="col">Quaterly Tuition Fees</th>
         <th scope="col">Id Card Fees</th>
         <th scope="col">Total</th>
+        <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
           <td><%= f.quarterly_tuition_fees %></td>
           <td><%= f.id_card_fees %></td>
           <td><%= f.total %></td>
+          <td><%= link_to "Edit", edit_fee_structure_path(f), class:"btn btn-warning" %></td>
           <td>
             <%= form_with model: @fee_structure, url: fee_structure_path(f), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
               <%= f.submit "Delete", class:"btn, btn-danger" %>

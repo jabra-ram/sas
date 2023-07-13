@@ -13,7 +13,18 @@ class AgeCriteriaController < ApplicationController
         elsif @age_criteria.save
             redirect_to age_criteria_path, notice:"Criteria added!"
         else 
-            render "new", alert:"Something went wrong!!!"
+            render :new, alert:"Something went wrong!!!"
+        end
+    end
+    def edit
+        @age_criteria = AgeCriterium.find(params[:id])
+    end
+    def update
+        @age_criteria = AgeCriterium.find(params[:id])
+        if @age_criteria.update(age_criteria_params)
+            redirect_to age_criteria_path, notice:"Criteria updated!"
+        else 
+            redirect_to edit_age_creteria_path, alert:"Something went wrong!!!"
         end
     end
     def destroy
@@ -21,7 +32,7 @@ class AgeCriteriaController < ApplicationController
         if @age_criteria.destroy
             redirect_to age_criteria_path, notice:"Data deleted successfully!"
         else 
-            render "new", alert:"Something went wrong!"
+            render :new, alert:"Something went wrong!"
         end
     end
     private

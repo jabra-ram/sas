@@ -10,10 +10,9 @@ function updateTotal() {
 
   document.getElementById('total-fees').value = total;
 }
-  
+
 document.getElementById('admission-fees').addEventListener('change', updateTotal);
 document.getElementById('annual-admission-fees').addEventListener('change', updateTotal);
 document.getElementById('caution-money').addEventListener('change', updateTotal);
 document.getElementById('quarterly-tuition-fees').addEventListener('change', updateTotal);
 document.getElementById('id-card-fees').addEventListener('change', updateTotal);
-  

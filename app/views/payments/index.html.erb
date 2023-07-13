@@ -1,7 +1,7 @@
 <div class="container">
   <%= link_to "Add Payment", new_payment_path, class:"btn btn-info"%>
   <h1 class="text-center"> Payments </h1>
-  <table class="table table-hover container">
+  <table class="table table-hover container table-bordered text-center">
     <thead>
       <tr>
         <th scope="col">S. No.</th>
@@ -17,6 +17,8 @@
         <th scope="col">Status</th>
         <th scope="col">generate invoice</th>
         <th scope="col">email invoice</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +41,7 @@
           <td>
             <%= link_to 'Email', email_invoice_path(p), class:'btn btn-secondary' %>
           </td>
+          <td><%= link_to "Edit", edit_payment_path(p), class:"btn btn-warning" %></td>
           <td>
            <%= form_with model: @payment, url: payment_path(p), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
               <%= f.submit "Delete", class:"btn, btn-danger" %>

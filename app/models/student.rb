@@ -32,7 +32,6 @@ class Student < ApplicationRecord
       indexes :contact_number, type: :text, analyzer: :english
       indexes :classname, type: :keyword
       indexes :section, type: :keyword
-
     end
   end
   def as_indexed_json(_options = {})
@@ -67,7 +66,6 @@ class Student < ApplicationRecord
         }
       }
     }
-  
     if !filter_column.empty? && !filter_value.empty?
       search_params[:query][:bool][:filter] = {
         term: {
@@ -75,7 +73,6 @@ class Student < ApplicationRecord
         }
       }
     end
-  
     if sort_by && !sort_by.empty?
       search_params[:sort] = {
         sort_by.to_sym => {
@@ -83,9 +80,7 @@ class Student < ApplicationRecord
         }
       }
     end
-    puts search_params
     search(search_params)
   end
-  
   index_data
 end

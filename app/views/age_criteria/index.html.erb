@@ -1,15 +1,16 @@
 <div class="container">
   <%= link_to "Add Criteria", new_age_criterium_path, class:"btn btn-info"%>
   <h1 class="text-center"> Age Criteria </h1>
-  <table class="table table-hover container text-center">
+  <table class="table table-hover container text-center table-bordered text-center">
     <thead>
       <tr>
         <th scope="col">S.No.</th>
         <th scope="col">Class</th>
         <th scope="col" colspan="2">Date of birth(range)</th>
         <th scope="col">Age</th> 
-        <th scope="col">Date as on </th>
-        <th scope="col">Delete </th>
+        <th scope="col">Date as on</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
           <td><%= a.date_of_birth_before %></td> 
           <td><%= a.age %></td> 
           <td><%= a.date_as_on %></td> 
+          <td><%= link_to "Edit", edit_age_criterium_path(a), class:"btn btn-warning" %></td> 
           <td>
             <%= form_with model: @age_criteria, url: age_criterium_path(a), method: :delete do |f| %>
               <%= f.submit "Delete", class:"btn, btn-danger" %>

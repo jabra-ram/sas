@@ -7,8 +7,8 @@
     <div class="navbar-nav justify-content-between">
       <% if current_admin %>
         <span class='nav-link'> Logged in as <%= current_admin.email %> </span>
-        <%= link_to "Log Out", logout_path, class:"nav-item nav-link bg-danger text-light"%>
-        <li class="nav-item mx-2">
+        <li class="nav-item nav-link mx-md-2 bg-danger"><a href="/logout" class="text-decoration-none text-light p-2">Logout</a>
+        <li class="nav-item mx-md-2">
           <button class="btn btn-primary" data-toggle="modal" data-target="#notificationModal">
             <i class="fa-regular fa-bell"></i>
             <span class="badge badge-light" id="notification-count"><%= current_admin.notifications.unread.count %></span>
