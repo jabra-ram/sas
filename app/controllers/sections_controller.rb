@@ -10,9 +10,9 @@ class SectionsController < ApplicationController
     def create 
         @section = Section.new(section_params)
         if @section.save
-            redirect_to sections_path, notice:"Section created successfully!"
+            redirect_to sections_path, notice:'Section created successfully!'
         else
-            render :new, alert:"Enter correct details please!"
+            render :new, alert:'Enter correct details please!'
         end
     end
     def edit
@@ -21,17 +21,17 @@ class SectionsController < ApplicationController
     def update
         @section = Section.find(params[:id])
         if @section.update(section_params)
-            redirect_to sections_path, notice:"Section edited successfully!"
+            redirect_to sections_path, notice:'Section edited successfully!'
         else
-            redirect_to edit_section_path, alert:"Enter correct details please!"
+            render :new, alert:'Enter correct details please!'
         end
     end
     def destroy 
         @section = Section.find(params[:id])
         if @section.destroy
-            redirect_to sections_path, notice:"Section deleted successfully!"
+            redirect_to sections_path, notice:'Section deleted successfully!'
         else 
-            render :new, alert:"Something went wrong!!!"
+            render :new, alert:'Something went wrong!!!'
         end
     end
     private

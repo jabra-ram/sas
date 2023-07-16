@@ -10,9 +10,9 @@ class InvitationsController < ApplicationController
     
     if @invitation.save
       AdminMailer.with(invitation: @invitation).invite_email.deliver_now
-      redirect_to admins_path, notice:"Invitation sent successfully"
+      redirect_to admins_path, notice:'Invitation sent successfully'
     else
-      render :new, alert:"Something went wrong!!!" 
+      render :new, alert:'Something went wrong!!!' 
     end
 
   end

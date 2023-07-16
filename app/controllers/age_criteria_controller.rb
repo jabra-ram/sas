@@ -9,11 +9,11 @@ class AgeCriteriaController < ApplicationController
     def create
         @age_criteria = AgeCriterium.new(age_criteria_params)
         if AgeCriterium.where(class_category_id: params[:age_criterium][:class_category_id]).empty? == false
-            redirect_to age_criteria_path, notice:"Age criteria already exist for this class!"
+            redirect_to age_criteria_path, notice:'Age criteria already exist for this class!'
         elsif @age_criteria.save
-            redirect_to age_criteria_path, notice:"Criteria added!"
+            redirect_to age_criteria_path, notice:'Criteria added!'
         else 
-            render :new, alert:"Something went wrong!!!"
+            render :new
         end
     end
     def edit
@@ -22,17 +22,17 @@ class AgeCriteriaController < ApplicationController
     def update
         @age_criteria = AgeCriterium.find(params[:id])
         if @age_criteria.update(age_criteria_params)
-            redirect_to age_criteria_path, notice:"Criteria updated!"
+            redirect_to age_criteria_path, notice:'Criteria updated!'
         else 
-            redirect_to edit_age_creteria_path, alert:"Something went wrong!!!"
+            redirect_to edit_age_creteria_path, alert:'Something went wrong!!!'
         end
     end
     def destroy
         @age_criteria = AgeCriterium.find(params[:id])
         if @age_criteria.destroy
-            redirect_to age_criteria_path, notice:"Data deleted successfully!"
+            redirect_to age_criteria_path, notice:'Data deleted successfully!'
         else 
-            render :new, alert:"Something went wrong!"
+          render :new
         end
     end
     private

@@ -7,22 +7,27 @@
       <div class="mb-3 col-md-6">
         <%= f.label :admission_fees, class:"form-label required" %>
         <%= f.number_field :admission_fees, class:"form-control", id:"admission-fees" %>
+        <p class='text-danger'><%= show_errors(@fee_structure, :admission_fees) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :annual_admission_fees, class:"form-label required" %>
         <%= f.number_field :annual_admission_fees, class:"form-control", id:"annual-admission-fees" %>
+        <p class='text-danger'><%= show_errors(@fee_structure, :annual_admission_fees) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :caution_money, class:"form-label required" %>
         <%= f.number_field :caution_money, class:"form-control", id:"caution-money" %>
+        <p class='text-danger'><%= show_errors(@fee_structure, :caution_money) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :quarterly_tuition_fees, class:"form-label required" %>
         <%= f.number_field :quarterly_tuition_fees, class:"form-control", id:"quarterly-tuition-fees" %>
+        <p class='text-danger'><%= show_errors(@fee_structure, :quarterly_tuition_fees) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :id_card_fees, class:"form-label required" %>
         <%= f.number_field :id_card_fees, class:"form-control", id:"id-card-fees" %>
+        <p class='text-danger'><%= show_errors(@fee_structure, :id_card_fees) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :total, class:"form-label" %>

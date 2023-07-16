@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def authorize
         if current_admin.nil?
-            redirect_to login_path, alert:"Not Authorized!!!"
+            redirect_to login_path, alert:'Not Authorized!!!'
         end
     end
 end

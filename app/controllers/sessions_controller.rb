@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
     def new 
         if current_admin
-            redirect_to admins_path, notice:"You are already logged in!"
+            redirect_to admins_path, notice:'You are already logged in!'
         end
         @admin = Admin.new
     end
@@ -11,15 +11,15 @@ class SessionsController < ApplicationController
         
         if @admin && @admin.authenticate(params[:password])
             session[:admin_id] = @admin.id 
-            redirect_to admins_path, notice:"Logged In"
+            redirect_to admins_path, notice:'Logged In'
         else 
-            render :new, alert:"Incorrect email or password!"
+            render :new, alert:'Incorrect email or password!'
         end
     end
 
     def destroy 
         session[:admin_id]=nil
-        flash[:notice] = "Logged Out!"
+        flash[:notice] = 'Logged Out!'
         redirect_to login_path
     end
 end

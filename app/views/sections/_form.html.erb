@@ -2,9 +2,7 @@
     <div class="mb-3">
       <%= f.label :section, class:"form-label required" %><br>
       <%= f.text_field :section, class:"form-control" %>
-      <% @section.errors.full_messages.each do |msg| %>
-        <p class="text-danger"><%= msg %></p>
-      <% end %>
+      <p class='text-danger'><%= show_errors(@section, :section) %></p>
     </div>
     <%= f.submit "Save", class:"btn btn-primary"%>
   <% end %>

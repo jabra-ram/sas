@@ -1,3 +1,6 @@
+<div class='container'>
+  <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
+</div>
 <div class="w-25 mx-auto p-4 mt-5 text-dark border border-dark">
   <h1 class="text-center"> Complete Sign-up </h1>
   <%= form_with model: @admin, url: invite_admin_path(@invitation.token) do |f|%>
@@ -8,10 +11,12 @@
     <div class="mb-3">
     <%= f.label :password, class:"form-label"  %>
     <%= f.password_field :password, class:"form-control" %>
+    <p class='text-danger'><%= show_errors(@admin, :password) %></p>
     </div>  
     <div class="mb-3">
     <%= f.label :password_confirmation, class:"form-label"  %>
     <%= f.password_field :password_confirmation, class:"form-control" %>
+    <p class='text-danger'><%= show_errors(@admin, :password_confirmation) %></p>
     </div>
     <%= f.submit "Sign-up", class:"btn btn-primary"%>
   <% end %>

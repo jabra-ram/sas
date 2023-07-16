@@ -13,24 +13,24 @@ class ClassCategoriesController < ApplicationController
     @section = Section.find(params[:class_category][:section_id])
     if c
       if c.sections.where(id: @section.id).empty? == false
-        redirect_to class_categories_path, notice:"Section already exist in class!"
+        redirect_to class_categories_path, alert:'Section already exist in class!'
       else
         c.sections << @section
-        redirect_to class_categories_path, notice:"Section added to class!"
+        redirect_to class_categories_path, notice:'Section added to class!'
       end
     elsif @class_category.save
       @class_category.sections << @section
-      redirect_to class_categories_path, notice:"Class created successfully!"
+      redirect_to class_categories_path, notice:'Class created successfully!'
     else
-      render :new, alert:"Enter correct details!!!"
+      render :new, alert:'Enter correct details!!!'
     end
   end
   def destroy 
     @class_category = ClassCategory.find(params[:id])
     if @class_category.destroy
-      redirect_to class_categories_path, notice:"Record deleted successfully!"
+      redirect_to class_categories_path, notice:'Record deleted successfully!'
     else
-      render :new, alert:"Something went wrong!!!"
+      render :new, alert:'Something went wrong!!!'
     end
   end
   private

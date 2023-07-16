@@ -9,11 +9,11 @@ class FeeStructuresController < ApplicationController
     def create 
         @fee_structure = FeeStructure.new(fee_structure_params)
         if FeeStructure.where(class_category_id: params[:fee_structure][:class_category_id]).empty? == false
-            redirect_to fee_structures_path, alert:"Fee Structure already exist for this class!"
+            redirect_to fee_structures_path, alert:'Fee Structure already exist for this class!'
         elsif @fee_structure.save
-            redirect_to fee_structures_path, notice:"Data Added successfully!"
+            redirect_to fee_structures_path, notice:'Data Added successfully!'
         else
-            render "new", alert:"Enter Correct details!!!"
+            render :new, alert:'Enter Correct details!!!'
         end
     end
     def edit
@@ -22,17 +22,17 @@ class FeeStructuresController < ApplicationController
     def update
         @fee_structure = FeeStructure.find(params[:id])
         if @fee_structure.update(fee_structure_params)
-            redirect_to fee_structures_path, notice:"Data Updated successfully!"
+            redirect_to fee_structures_path, notice:'Data Updated successfully!'
         else
-            redirect_to edit_fee_structure_path, alert:"Enter Correct details!!!"
+            redirect_to edit_fee_structure_path, alert:'Enter Correct details!!!'
         end
     end
     def destroy
         @fee_structure = FeeStructure.find(params[:id])
         if @fee_structure.destroy
-            redirect_to fee_structures_path, notice:"Data deleted successfully!"
+            redirect_to fee_structures_path, notice:'Data deleted successfully!'
         else 
-            render :new, alert:"Something went wrong!"
+            render :new, alert:'Something went wrong!'
         end
     end
     

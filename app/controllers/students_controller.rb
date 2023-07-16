@@ -16,9 +16,9 @@ class StudentsController < ApplicationController
 		if @student.save
 			@student.photo.attach(params[:student][:photo])
 			@student.docs.attach(params[:student][:docs])
-			redirect_to students_path, notice:"Record saved!"
+			redirect_to students_path, notice:'Record saved!'
 		else
-			render :new, alert:"Something went wrong!!!"
+			render :new, alert:'Something went wrong!!!'
 		end
 	end
 	def edit
@@ -29,17 +29,17 @@ class StudentsController < ApplicationController
 		if @student.update(student_params)
 			params[:student][:photo] && @student.photo.attach(params[:student][:photo])
 			params[:student][:docs] && @student.docs.attach(params[:student][:docs])
-			redirect_to students_path, notice:"Record updated!"
+			redirect_to students_path, notice:'Record updated!'
 		else
-			redirect_to edit_student_path, alert:"Something went wrong!!!"
+			redirect_to edit_student_path, alert:'Something went wrong!!!'
 		end
 	end
 	def destroy
 		@student = Student.find(params[:id])
 		if @student.destroy
-			redirect_to students_path, notice:"Record deleted!"
+			redirect_to students_path, notice:'Record deleted!'
 		else
-			render :new, alert:"Something went wrong!!!"
+			render :new, alert:'Something went wrong!!!'
 		end
 	end 
 	def search 

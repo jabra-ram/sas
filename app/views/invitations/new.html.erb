@@ -4,6 +4,7 @@
     <div class="mb-3">
       <%= f.label :email, class:"form-label required" %>
       <%= f.email_field :email, class:"form-control" %>
+      <p class='text-danger'><%= show_errors(@invitation, :email) %></p>
     </div>
     <%= f.submit "Send Invitation Link", class:"btn btn-primary"%>
   <% end %>
