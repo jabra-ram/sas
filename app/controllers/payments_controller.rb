@@ -11,7 +11,9 @@ class PaymentsController < ApplicationController
         if @payment.save
             if @payment[:status]=='Rejected' || @payment[:status]=='Pending'
                 message = "The payment status of #{@payment.student[:name]} is set to #{@payment[:status]} by #{current_admin[:email]}"
+                message_mail = "Your payment status is '#{@payment[:status]}'."
                 ActionCable.server.broadcast('notification_channel', message)
+                AdminMailer.with(student: @payment.student, message: message_mail).status_email.deliver_now
                 Admin.all.each do |admin|
                     if admin!=current_admin
                         Notification.create(recipient_id:admin[:id], sender_id:current_admin[:id], message:message, read_status: false)
@@ -31,7 +33,9 @@ class PaymentsController < ApplicationController
         if @payment.update(payment_params)
             if @payment[:status]=='Rejected' || @payment[:status]=='Pending'
                 message = "The payment status of #{@payment.student[:name]} is set to #{@payment[:status]} by #{current_admin[:email]}"
+                message_mail = "Your payment status is '#{@payment[:status]}'."
                 ActionCable.server.broadcast('notification_channel', message)
+                AdminMailer.with(student: @payment.student, message: message_mail).status_email.deliver_now
                 Admin.all.each do |admin|
                     if admin!=current_admin
                         Notification.create(recipient_id:admin[:id], sender_id:current_admin[:id], message:message, read_status: false)

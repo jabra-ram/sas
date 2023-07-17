@@ -3,14 +3,17 @@
       <div class="mb-3 col-md-6">
         <%= f.label :name, class:"form-label required" %><br>
         <%= f.text_field :name, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :name) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :email, class:"form-label required" %><br>
         <%= f.email_field :email, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :email) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :date_of_birth, class:"form-label required" %><br>
         <%= f.date_field :date_of_birth, class:"form-control", id:"date-of-birth" %>
+        <p class='text-danger'><%= show_errors(@student, :date_of_birth) %></p>
       </div>
       <div class="mb-3 col-md-4">
         <%= f.label :age, class:"form-label" %><br>
@@ -27,22 +30,27 @@
       <div class="mb-3 col-md-4">
         <%= f.label :academic_year, class:"form-label required" %><br>
         <%= f.number_field :academic_year, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :academic_year) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :father_name, class:"form-label required" %><br>
         <%= f.text_field :father_name, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :father_name) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :mother_name, class:"form-label required" %><br>
         <%= f.text_field :mother_name, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :mother_name) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :address, class:"form-label required" %><br>
         <%= f.text_field :address, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :address) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :contact_number, class:"form-label required" %><br>
         <%= f.number_field :contact_number, class:"form-control" %>
+        <p class='text-danger'><%= show_errors(@student, :contact_number) %></p>
       </div>
       <div class="mb-3 col-md-6">
         <%= f.label :photo, class:"form-label required" %><br>

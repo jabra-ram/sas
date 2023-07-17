@@ -6,16 +6,19 @@ class Student < ApplicationRecord
   has_many_attached :docs
   belongs_to :class_category
   belongs_to :section
-  validates :name, presence:true
-  validates :email, presence:true, uniqueness:true
-  validates :date_of_birth, presence:true
+  validates :name, presence:{message: 'name cannot be null'}, length:{minimum:4, message:'name should be minimum 4 characters'}
+  validates :email, presence:{message: 'email cannot be null'}, uniqueness:{message: 'email is already taken'}
+  validates :date_of_birth, presence:{message:'enter valid date'}
   validates :class_category_id, presence:true
   validates :section_id, presence:true
-  validates :academic_year, presence:true
-  validates :father_name, presence:true
-  validates :mother_name, presence:true
-  validates :address, presence:true
-  validates :contact_number, presence:true
+  validates :academic_year, presence:{message: 'year cannot be null'}, 
+                            numericality:{greater_than:2011, less_than_or_equal_to:Date.today.year, message:'enter a valid year'}
+  validates :father_name, presence:{message: 'father name cannot be null'}
+  validates :mother_name, presence:{message: 'mother cannot be null'}
+  validates :address, presence:{message: 'address cannot be null'}
+  validates :contact_number,  presence:{message: 'contact number cannot be null'},
+                              length:{minimum:8, maximum:10, message:'enter valid number'}
+  validates :photo, presence:{message:'upload profile picture'}
 
   def self.index_data
     __elasticsearch__.create_index! force: true
@@ -32,6 +35,8 @@ class Student < ApplicationRecord
       indexes :contact_number, type: :text, analyzer: :english
       indexes :classname, type: :keyword
       indexes :section, type: :keyword
+      indexes :name_sort, type: :keyword
+      indexes :email_sort, type: :keyword
     end
   end
   def as_indexed_json(_options = {})
@@ -48,7 +53,9 @@ class Student < ApplicationRecord
       mother_name: mother_name,
       contact_number: contact_number,
       classname: class_category.classname,
-      section: section.section
+      section: section.section,
+      name_sort: name,
+      email_sort: email
     }
   end
   def self.search_query(query, filter_column, filter_value, sort_by)
@@ -74,12 +81,20 @@ class Student < ApplicationRecord
       }
     end
     if sort_by && !sort_by.empty?
+      if sort_by == "name"
+        sort_field = "name_sort"
+      elsif sort_by == "email"
+        sort_field = "email_sort"
+      else
+        sort_field = sort_by
+      end
       search_params[:sort] = {
-        sort_by.to_sym => {
+        sort_field.to_sym => {
           order: :asc
         }
       }
     end
+
     search(search_params)
   end
   index_data

@@ -10,4 +10,10 @@ class AdminMailer < ApplicationMailer
     @admin = params[:admin]
     mail(to: @admin.email, subject: 'Admin Account Confirmation')
   end
+
+  def status_email
+    @student = params[:student]
+    @message = params[:message]
+    mail(to: @student.email, subject: 'Payment status')
+  end
 end
