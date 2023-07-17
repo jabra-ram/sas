@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
-Admin.create(email: 'admin@gmail.com', password: '1234', password_confirmation: '1234') 
+Admin.create(email: 'admin@gmail.com', password: '123456', password_confirmation: '123456') 
 
 section1 = Section.create(section:'A')
 section2 = Section.create(section:'B')

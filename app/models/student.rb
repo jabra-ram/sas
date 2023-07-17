@@ -7,10 +7,8 @@ class Student < ApplicationRecord
   belongs_to :class_category
   belongs_to :section
   validates :name, presence:{message: 'name cannot be null'}, length:{minimum:4, message:'name should be minimum 4 characters'}
-  validates :email, presence:{message: 'email cannot be null'}, uniqueness:{message: 'email is already taken'}
+  validates :email, presence:{message: 'email cannot be null'}, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'invalid email' }, uniqueness:{message: 'email is already taken'}
   validates :date_of_birth, presence:{message:'enter valid date'}
-  validates :class_category_id, presence:true
-  validates :section_id, presence:true
   validates :academic_year, presence:{message: 'year cannot be null'}, 
                             numericality:{greater_than:2011, less_than_or_equal_to:Date.today.year, message:'enter a valid year'}
   validates :father_name, presence:{message: 'father name cannot be null'}
