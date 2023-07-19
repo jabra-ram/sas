@@ -6,6 +6,7 @@ class Student < ApplicationRecord
   has_many_attached :docs
   belongs_to :class_category
   belongs_to :section
+  has_one :payment
   validates :name, presence:{message: 'name cannot be null'}, length:{minimum:4, message:'name should be minimum 4 characters'}
   validates :email, presence:{message: 'email cannot be null'}, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'invalid email' }, uniqueness:{message: 'email is already taken'}
   validates :date_of_birth, presence:{message:'enter valid date'}

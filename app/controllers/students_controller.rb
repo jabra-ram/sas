@@ -51,6 +51,18 @@ class StudentsController < ApplicationController
 				@students = Student.search_query(query, filter_column, filter_value, sort_by).records
 		end
 	end
+	def payment_status
+		@student = Student.find_by_email(params[:email])
+		if @student
+			if @student.payment[:status]=='Approved'
+				redirect_to login_path, notice:'your payment is approved.'
+			else
+				redirect_to login_path, alert:'your payment is pending.'
+			end
+		else
+			redirect_to login_path, alert:'enter valid email id / student does not exist.'
+		end
+	end
 	private 
 	def student_params
 		params.require(:student).permit(:name, :email, :date_of_birth, :age, :class_category_id, :section_id, :academic_year, :father_name, :mother_name, :address, :contact_number, :photo, :docs)

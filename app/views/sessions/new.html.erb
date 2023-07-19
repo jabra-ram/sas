@@ -1,14 +1,28 @@
-<div class="w-25 mx-auto p-4 mt-5 text-dark border border-dark">
-  <h1 class="text-center">Log In</h1>
-  <%= form_with model: @session do |f|%>
-    <div class="mb-3">
-      <%= f.label :email, class:"form-label" %>
-      <%= f.email_field :email, class:"form-control" %>
-    </div>
-    <div class="mb-3">
-      <%= f.label :password,  class:"form-label" %>
-      <%= f.password_field :password, class:"form-control" %>
-    </div>
-    <%= f.submit "Log In", class:"btn btn-primary" %>
-  <% end %>
+<div class='container d-flex justify-content-evenly align-items-start'>
+  <div class="p-4 mt-5 text-dark border border-dark">
+    <h1 class="text-center bg-primary text-light">Admin</h1>
+    <h2 class="text-center">Log In</h2>
+    <%= form_with model: @session do |f|%>
+      <div class="mb-3">
+        <%= f.label :email, class:"form-label required" %>
+        <%= f.email_field :email, class:"form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :password,  class:"form-label required" %>
+        <%= f.password_field :password, class:"form-control" %>
+      </div>
+      <%= f.submit "Log In", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="p-4 mt-5 text-dark border border-dark">
+    <h1 class="text-center bg-warning text-light">Student</h1>
+    <h3 class="text-center text-secondary">Check Payment Status</h3>
+    <%= form_with model: @student, url: payment_status_path, method: :get do |f|%>
+      <div class="mb-3">
+        <%= f.label :email, class:"form-label required" %>
+        <%= f.email_field :email, class:"form-control" %>
+      </div>
+      <%= f.submit "Check", class:"btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

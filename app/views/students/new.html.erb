@@ -1,9 +1,10 @@
 <div class='container'>
-  <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
+  <div class='clearfix mb-3'>
+    <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
+  </div>
+  <div class="w-res mx-auto p-4 text-dark border border-dark">
+    <h1 class="text-center"> Add Student </h1>
+    <%= render 'form' %>
+  </div>
 </div>
-<div class="w-50 mx-auto p-4 mt-5 text-dark border border-dark">
-  <h1 class="text-center"> Add Student </h1>
-  <%= render 'form' %>
-</div>
-
 <%= javascript_pack_tag 'student' %>

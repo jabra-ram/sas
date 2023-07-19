@@ -15,8 +15,46 @@
  */
 @import 'bootstrap';
 
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: #B5FED9 !important;
+}
+
+.navbar {
+	background-color: #98CBB4 !important;
+}
+
 .required:after {
 	content: " *";
 	color: red;
 	font-weight: 100;
+}
+
+.home-link {
+	text-decoration: none !important;
+	color: black !important;
+}
+
+.card:hover {
+	opacity: 1;
+	border: 2px solid black;
+}
+
+.w-res {
+	min-width: fit-content;
+	width: 30%;
+}
+
+@media (max-width: 576px) {
+	.w-res {
+		width: 90%;
+	}
+}
+
+@media (max-width: 768px) {
+	.w-res {
+		width: 50%;
+	}
 }

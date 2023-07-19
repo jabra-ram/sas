@@ -1,55 +1,57 @@
-<div class="container-fluid">
+<div class="container">
   <%= link_to "Add Payment", new_payment_path, class:"btn btn-info"%>
   <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
   <h1 class="text-center"> Payments </h1>
-  <table class="table table-hover container table-bordered text-center">
-    <thead>
-      <tr>
-        <th scope="col">S. No.</th>
-        <th scope="col">Student Id</th>
-        <th scope="col">Student Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Class</th>
-        <th scope="col">Academic Year</th>
-        <th scope="col">Address</th>
-        <th scope="col">Contact</th>
-        <th scope="col">Mode of Payment</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Status</th>
-        <th scope="col">generate invoice</th>
-        <th scope="col">email invoice</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @payments.each_with_index do |p, index| %>
+  <div class='table-responsive'>
+    <table class="table table-hover container table-bordered border-dark text-center">
+      <thead>
         <tr>
-          <td><%= index+1 %></td>
-          <td><%= p.student[:id] %></td>
-          <td><%= p.student[:name] %></td>
-          <td><%= p.student[:email] %></td>
-          <td><%= p.student.class_category[:classname] %></td>
-          <td><%= p.student[:academic_year] %></td>
-          <td><%= p.student[:address] %></td>
-          <td><%= p.student[:contact_number] %></td>
-          <td><%= p.mode_of_payment %></td>
-          <td><%= p.amount %></td>
-          <td><%= p.status %></td>
-          <td>
-            <%= link_to 'Pdf', generate_invoice_path(p), class:'btn btn-secondary' %>
-          </td>
-          <td>
-            <%= link_to 'Email', email_invoice_path(p), class:'btn btn-secondary' %>
-          </td>
-          <td><%= link_to "Edit", edit_payment_path(p), class:"btn btn-warning" %></td>
-          <td>
-           <%= form_with model: @payment, url: payment_path(p), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
-              <%= f.submit "Delete", class:"btn, btn-danger" %>
-            <% end %>
-          </td>
+          <th scope="col">S. No.</th>
+          <th scope="col">Student Id</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Class</th>
+          <th scope="col">Academic Year</th>
+          <th scope="col">Address</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Mode of Payment</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Status</th>
+          <th scope="col">generate invoice</th>
+          <th scope="col">email invoice</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @payments.each_with_index do |p, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= p.student[:id] %></td>
+            <td><%= p.student[:name] %></td>
+            <td><%= p.student[:email] %></td>
+            <td><%= p.student.class_category[:classname] %></td>
+            <td><%= p.student[:academic_year] %></td>
+            <td><%= p.student[:address] %></td>
+            <td><%= p.student[:contact_number] %></td>
+            <td><%= p.mode_of_payment %></td>
+            <td><%= p.amount %></td>
+            <td><%= p.status %></td>
+            <td>
+              <%= link_to 'Pdf', generate_invoice_path(p), class:'btn btn-secondary' %>
+            </td>
+            <td>
+              <%= link_to 'Email', email_invoice_path(p), class:'btn btn-secondary' %>
+            </td>
+            <td><%= link_to "Edit", edit_payment_path(p), class:"btn btn-warning" %></td>
+            <td>
+              <%= form_with model: @payment, url: payment_path(p), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
+                <%= f.submit "Delete", class:"btn, btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
