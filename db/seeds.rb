@@ -39,7 +39,7 @@ s1 = Student.create(name: 'Rahul Gupta', email: 'rahul23@gmail.com', date_of_bir
 s2 = Student.create(name: 'Rakesh Pareek', email: 'rakesh123@gmail.com', date_of_birth: '14-04-2018', age: 5,
                     academic_year: 2023, father_name: 'Manish Pareek', mother_name: 'Riya Pareek',
                     address: 'Nabapally, Sector-4, Kolkata',
-                    contact_number: 3_698_635_334, class_category_id: 1, section_id: 1)
+                    contact_number: 369_635_334, class_category_id: 1, section_id: 1)
 s3 = Student.create(name: 'Arvind Kumar', email: 'arvind43@gmail.com', date_of_birth: '18-03-2017', age: 6,
                     academic_year: 2023, father_name: 'Raj Kumar', mother_name: 'Shreya Kumar',
                     address: 'Chingarighata, Sector-4, Kolkata',

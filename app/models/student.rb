@@ -24,7 +24,6 @@ class Student < ApplicationRecord
   validates :address, presence: { message: 'address cannot be null' }
   validates :contact_number,  presence: { message: 'contact number cannot be null' },
                               length: { minimum: 8, maximum: 10, message: 'enter valid number' }
-  validates :photo, presence: { message: 'upload profile picture' }
 
   def self.index_data
     __elasticsearch__.create_index! force: true
