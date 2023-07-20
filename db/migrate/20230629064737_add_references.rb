@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is add references migration
 class AddReferences < ActiveRecord::Migration[6.1]
   def change
     create_join_table :class_categories, :section, table_name: :class_sections

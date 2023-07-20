@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# This is create payment migration
 class CreatePayments < ActiveRecord::Migration[6.1]
+  # rubocop:disable Metrics/MethodLength
   def change
     create_table :payments do |t|
       t.string :student_name
@@ -16,3 +20,4 @@ class CreatePayments < ActiveRecord::Migration[6.1]
     end
   end
 end
+# rubocop:enable Metrics/MethodLength

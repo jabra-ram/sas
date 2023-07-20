@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
+# This is create student migration
 class CreateStudents < ActiveRecord::Migration[6.1]
+  # rubocop:disable Metrics/MethodLength
   def change
     create_table :students do |t|
       t.string :name
@@ -15,3 +19,4 @@ class CreateStudents < ActiveRecord::Migration[6.1]
     end
   end
 end
+# rubocop:enable Metrics/MethodLength

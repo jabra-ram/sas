@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is create age criteria migration
 class CreateAgeCriteria < ActiveRecord::Migration[6.1]
   def change
     create_table :age_criteria do |t|

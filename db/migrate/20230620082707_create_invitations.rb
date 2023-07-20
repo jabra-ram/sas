@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is create invitation migration
 class CreateInvitations < ActiveRecord::Migration[6.1]
   def change
     create_table :invitations do |t|

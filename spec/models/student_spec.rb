@@ -1,5 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
+# rubocop: disable Metrics/BlockLength
 RSpec.describe Student, type: :model do
   describe 'validations' do
     it 'is not valid without an name' do
@@ -49,3 +51,4 @@ RSpec.describe Student, type: :model do
     end
   end
 end
+# rubocop: enable Metrics/BlockLength

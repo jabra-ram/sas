@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is remove column from payment migration
 class RemoveColumnsFromPayment < ActiveRecord::Migration[6.1]
   def change
     remove_column :payments, :student_name, :string

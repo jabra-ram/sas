@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This is create fee structure migration
 class CreateFeeStructures < ActiveRecord::Migration[6.1]
   def change
     create_table :fee_structures do |t|

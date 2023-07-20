@@ -2,28 +2,30 @@
   <%= link_to 'Add Section', new_section_path, class:'btn btn-info'%>
   <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
   <h1 class='text-center'> Sections </h1>
-  <table class='table table-hover container table-bordered border-dark text-center'>
-    <thead>
-      <tr>
-        <th scope='col'>S.No.</th>
-        <th scope='col'>Section</th>
-        <th scrope='col'>Edit</th>
-        <th scrope='col'>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sections.each_with_index do |section, index| %>
+  <div class='table-responsive mb-5'>
+    <table class='table table-hover container table-bordered border-dark text-center'>
+      <thead>
         <tr>
-          <td><%= index+1 %></td>
-          <td><%= section.section %></td>
-          <td><%= link_to 'Edit', edit_section_path(section), class:'btn btn-warning' %>
-            <td>
-              <%= form_with model: @section, url: section_path(section), method: :delete, data: {confirm: 'Are you sure?'} do |f| %>
-                <%= f.submit 'Delete', class:'btn, btn-danger' %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <th scope='col'>S.No.</th>
+          <th scope='col'>Section</th>
+          <th scrope='col'>Edit</th>
+          <th scrope='col'>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sections.each_with_index do |section, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= section.section %></td>
+            <td><%= link_to 'Edit', edit_section_path(section), class:'btn btn-warning' %>
+              <td>
+                <%= form_with model: @section, url: section_path(section), method: :delete, data: {confirm: 'Are you sure?'} do |f| %>
+                  <%= f.submit 'Delete', class:'btn, btn-danger' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>

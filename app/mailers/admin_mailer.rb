@@ -1,4 +1,7 @@
-class AdminMailer < ApplicationMailer 
+# frozen_string_literal: true
+
+# This is admin mailer
+class AdminMailer < ApplicationMailer
   default from: 'jrchoudhary2410@gmail.com'
 
   def invite_email
