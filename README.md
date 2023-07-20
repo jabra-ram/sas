@@ -18,6 +18,9 @@ change directory to project folder
 
 * rails db:setup
 
+* admin login- email:admin@gmail.com, password:123456
+
+
 
 
 
