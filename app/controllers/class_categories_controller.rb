@@ -31,7 +31,7 @@ class ClassCategoriesController < ApplicationController
     if @class_category.destroy
       redirect_to class_categories_path, notice: 'Record deleted successfully!'
     else
-      render :new, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 

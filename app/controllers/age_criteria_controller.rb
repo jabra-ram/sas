@@ -31,7 +31,7 @@ class AgeCriteriaController < ApplicationController
     if @age_criteria.update(age_criteria_params)
       redirect_to age_criteria_path, notice: 'Criteria updated!'
     else
-      redirect_to edit_age_creteria_path, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 

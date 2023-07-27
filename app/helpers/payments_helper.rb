@@ -23,9 +23,9 @@ module PaymentsHelper
     Prawn::Document.new do |pdf|
       before_initialize_pdf(student, pdf, payment)
       invoice_services_totals_data = [
-        ['Total', '90000 INR'],
+        ['Total', "#{student.class_category.fee_structure[:total]} INR"],
         ['Amount Paid', "#{payment[:amount]} INR"],
-        ['Amount Due', "#{90_000 - payment[:amount]} INR"]
+        ['Amount Due', "#{student.class_category.fee_structure[:total] - payment[:amount]} INR"]
       ]
       render_invoice_table(pdf, invoice_services_totals_data, 325)
     end

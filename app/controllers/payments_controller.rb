@@ -17,7 +17,7 @@ class PaymentsController < ApplicationController
       send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
       redirect_to payments_path, notice: 'Record saved!'
     else
-      render :new, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 
@@ -29,9 +29,9 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
     if @payment.update(payment_params)
       send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
-      redirect_to payments_path, notice: 'Record saved!'
+      redirect_to payments_path, notice: 'Record updated!'
     else
-      redirect_to edit_payment_path, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 
@@ -40,7 +40,7 @@ class PaymentsController < ApplicationController
     if @payment.destroy
       redirect_to payments_path, notice: 'Record deleted!'
     else
-      render :new, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 

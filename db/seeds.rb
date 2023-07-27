@@ -66,5 +66,5 @@ s3.docs.attach(io: File.open(path2.join('dummy.pdf')), filename: 'dummy.pdf')
 s4.docs.attach(io: File.open(path2.join('dummy.pdf')), filename: 'dummy.pdf')
 s5.docs.attach(io: File.open(path2.join('dummy.pdf')), filename: 'dummy.pdf')
 
-Payment.create(mode_of_payment: 1, amount: 75_000, status: 2, notes: 'All Clear', student_id: 1)
-Payment.create(mode_of_payment: 2, amount: 75_000, status: 2, notes: 'All Clear', student_id: 2)
+Payment.create(mode_of_payment: 1, amount: 2500, status: 2, notes: 'All Clear', student_id: 1)
+Payment.create(mode_of_payment: 2, amount: 2500, status: 2, notes: 'All Clear', student_id: 2)
