@@ -24,7 +24,6 @@ class StudentsController < ApplicationController
       attach_documents
       redirect_to students_path, notice: 'Record saved!'
     else
-      flash.now[:alert] = 'Something went wrong!!!'
       render :new
     end
   end
@@ -64,12 +63,10 @@ class StudentsController < ApplicationController
 
   def payment_status
     @student = Student.find_by_email(params[:email])
-    if @student
-      if @student.payment[:status] == 'Approved'
-        redirect_to login_path, notice: 'your payment is approved.'
-      else
-        redirect_to login_path, alert: 'your payment is pending.'
-      end
+    if @student&.payment&.[](:status) == 'Approved'
+      redirect_to login_path, notice: 'your payment is approved.'
+    elsif @student
+      redirect_to login_path, alert: 'your payment is pending.'
     else
       redirect_to login_path, alert: 'enter valid email id / student does not exist.'
     end

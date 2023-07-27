@@ -23,7 +23,8 @@ class Student < ApplicationRecord
   validates :mother_name, presence: { message: 'mother cannot be null' }
   validates :address, presence: { message: 'address cannot be null' }
   validates :contact_number,  presence: { message: 'contact number cannot be null' },
-                              length: { minimum: 8, maximum: 10, message: 'enter valid number' }
+                              length: { minimum: 8, maximum: 10, message: 'enter valid number' },
+                              numericality: { greater_than: 0, message: 'enter a valid  number' }
 
   def self.index_data
     __elasticsearch__.create_index! force: true

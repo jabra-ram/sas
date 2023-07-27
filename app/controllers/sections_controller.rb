@@ -36,11 +36,11 @@ class SectionsController < ApplicationController
 
   def destroy
     @section = Section.find(params[:id])
-    if @section.destroy
-      redirect_to sections_path, notice: 'Section deleted successfully!'
-    else
-      render :new, alert: 'Something went wrong!!!'
+    if @section.class_categories.nil? || @section.class_categories.empty?
+      @section.destroy
+      return redirect_to sections_path, notice: 'Section deleted successfully!'
     end
+    redirect_to sections_path, alert: "There are classes having this section, you can't delete it!"
   end
 
   private

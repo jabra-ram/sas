@@ -15,9 +15,16 @@ class ClassCategoriesController < ApplicationController
   def create
     @class_category = ClassCategory.new(class_category_params)
     cls = ClassCategory.find_by(classname: params[:class_category][:classname])
-    @section = Section.find(params[:class_category][:section_id])
-    check_and_save(cls)
+    return redirect_to class_categories_path, alert: 'Class already exist! You can edit the class.' unless cls.nil?
+
+    @class_category.save
+    check_and_save(params[:class_category][:sections])
+    redirect_to class_categories_path, notice: 'class added successfully!'
   end
+
+  def edit; end
+
+  def update; end
 
   def destroy
     @class_category = ClassCategory.find(params[:id])

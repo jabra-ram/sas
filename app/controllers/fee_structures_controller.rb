@@ -18,7 +18,7 @@ class FeeStructuresController < ApplicationController
     elsif @fee_structure.save
       redirect_to fee_structures_path, notice: 'Data Added successfully!'
     else
-      render :new, alert: 'Enter Correct details!!!'
+      render :new
     end
   end
 

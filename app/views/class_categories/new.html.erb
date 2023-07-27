@@ -11,8 +11,9 @@
         <p class='text-danger'><%= show_errors(@class_category, :classname) %></p>
       </div>
       <div class='mb-3'>
-        <%= f.label :section_id, class:'form-label required' %>
-        <%= f.select :section_id, Section.pluck('section','id'),{}, class:'form-select' %>
+        <%= f.label :sections, class:'form-label required' %>
+        <%= f.select :sections, Section.pluck(:section, :id), {}, { class: 'form-select', multiple: true }%>
+        <p class='p-2'> note: use <code>ctrl</code> button to select multiple sections </p>
       </div>
       <%= f.submit 'Add', class:'btn btn-primary'%>
     <% end %>
