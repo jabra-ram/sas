@@ -22,9 +22,20 @@ class ClassCategoriesController < ApplicationController
     redirect_to class_categories_path, notice: 'class added successfully!'
   end
 
-  def edit; end
+  def edit
+    @class_category = ClassCategory.find(params[:id])
+  end
 
-  def update; end
+  def update
+    @class_category = ClassCategory.find(params[:id])
+    @class_category.sections.destroy_all
+    if @class_category.update(class_category_params)
+      check_and_save(params[:class_category][:sections])
+      redirect_to class_categories_path, notice: 'class Updated successfully!'
+    else
+      render :new
+    end
+  end
 
   def destroy
     @class_category = ClassCategory.find(params[:id])

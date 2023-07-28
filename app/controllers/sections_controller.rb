@@ -12,6 +12,11 @@ class SectionsController < ApplicationController
     @section = Section.new
   end
 
+  def dropdown_sections
+    @class_category = ClassCategory.find(params[:id])
+    render json: @class_category.sections
+  end
+
   def create
     @section = Section.new(section_params)
     if @section.save

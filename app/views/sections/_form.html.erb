@@ -1,8 +1,8 @@
 <%= form_with model: @section do |f|%>
-    <div class="mb-3">
-      <%= f.label :section, class:"form-label required" %><br>
-      <%= f.text_field :section, class:"form-control" %>
+    <div class='mb-3'>
+      <%= f.label :section, class:'form-label required' %>
+      <%= f.text_field :section, class:'form-control' %>
       <p class='text-danger'><%= show_errors(@section, :section) %></p>
     </div>
-    <%= f.submit "Save", class:"btn btn-primary"%>
+    <%= f.submit 'Save', class:'btn btn-primary'%>
   <% end %>

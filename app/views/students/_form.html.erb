@@ -1,70 +1,72 @@
 <%= form_with model: @student do |f|%>
-    <div class="row g-3">
-      <div class="mb-3 col-md-6">
-        <%= f.label :name, class:"form-label required" %><br>
-        <%= f.text_field :name, class:"form-control" %>
-        <p class='text-danger'><%= show_errors(@student, :name) %></p>
-      </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :email, class:"form-label required" %><br>
-        <%= f.email_field :email, class:"form-control" %>
-        <p class='text-danger'><%= show_errors(@student, :email) %></p>
-      </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :date_of_birth, class:"form-label required" %><br>
-        <%= f.date_field :date_of_birth, class:"form-control", id:"date-of-birth" %>
-        <p class='text-danger'><%= show_errors(@student, :date_of_birth) %></p>
-      </div>
-      <div class="mb-3 col-md-4">
-        <%= f.label :age, class:"form-label" %><br>
-        <%= f.number_field :age, class:"form-control", readonly:true, id:"age"%>
-      </div>
-      <div class="mb-3 col-md-4">
-        <%= f.label :class_category_id, "Class", class:"form-label required" %><br>
-        <%= f.select :class_category_id, ClassCategory.pluck('classname', 'id'),{}, class:"form-select" %>
-      </div>
-      <div class="mb-3 col-md-4">
-        <%= f.label :section_id, "Section", class:"form-label required" %><br>
-        <%= f.select :section_id, Section.pluck('section', 'id'),{}, class:"form-select" %>
-      </div>
-      <div class="mb-3 col-md-4">
-        <%= f.label :academic_year, class:"form-label required" %><br>
-        <%= f.number_field :academic_year, class:"form-control" %>
+<p class='text-danger text-center'><%= show_errors(@student, :base) %></p>
+  <div class='row g-3'>
+    <div class='mb-3 col-md-6'>
+      <%= f.label :name, class:'form-label required' %>
+      <%= f.text_field :name, class:'form-control' %>
+      <p class='text-danger'><%= show_errors(@student, :name) %></p>
+    </div>
+    <div class='mb-3 col-md-6'>
+      <%= f.label :email, class:'form-label required' %>
+      <%= f.email_field :email, class:'form-control' %>
+      <p class='text-danger'><%= show_errors(@student, :email) %></p>
+    </div>
+    <div class='mb-3 col-md-6'>
+      <%= f.label :date_of_birth, class:'form-label required' %>
+      <%= f.date_field :date_of_birth, class:'form-control', id:'date-of-birth' %>
+      <p class='text-danger'><%= show_errors(@student, :date_of_birth) %></p>
+    </div>
+    <div class='mb-3 col-md-4'>
+      <%= f.label :age, class:'form-label' %>
+      <%= f.number_field :age, class:'form-control', readonly:true, id:'age'%>
+      <p class='text-danger'><%= show_errors(@student, :age) %></p>
+    </div>
+    <div class='mb-3 col-md-4'>
+      <%= f.label :class_category_id, 'Class', class:'form-label required' %>
+      <%= f.select :class_category_id, ClassCategory.pluck('classname', 'id'),{}, {class:'form-select', id:'class-category-select'} %>
+    </div>
+    <div class='mb-3 col-md-4'>
+      <%= f.label :section_id, 'Section', class:'form-label required' %>
+        <%= f.select :section_id, [], {}, {class:'form-select', id:'section-select'} %>
+      </div>  
+      <div class='mb-3 col-md-4'>
+        <%= f.label :academic_year, class:'form-label required' %>
+        <%= f.number_field :academic_year, class:'form-control' %>
         <p class='text-danger'><%= show_errors(@student, :academic_year) %></p>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :father_name, class:"form-label required" %><br>
-        <%= f.text_field :father_name, class:"form-control" %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :father_name, class:'form-label required' %>
+        <%= f.text_field :father_name, class:'form-control' %>
         <p class='text-danger'><%= show_errors(@student, :father_name) %></p>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :mother_name, class:"form-label required" %><br>
-        <%= f.text_field :mother_name, class:"form-control" %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :mother_name, class:'form-label required' %>
+        <%= f.text_field :mother_name, class:'form-control' %>
         <p class='text-danger'><%= show_errors(@student, :mother_name) %></p>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :address, class:"form-label required" %><br>
-        <%= f.text_field :address, class:"form-control" %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :address, class:'form-label required' %>
+        <%= f.text_field :address, class:'form-control' %>
         <p class='text-danger'><%= show_errors(@student, :address) %></p>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :contact_number, class:"form-label required" %><br>
-        <%= f.number_field :contact_number, class:"form-control" %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :contact_number, class:'form-label required' %>
+        <%= f.number_field :contact_number, class:'form-control' %>
         <p class='text-danger'><%= show_errors(@student, :contact_number) %></p>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :photo, class:"form-label" %><br>
-        <%= f.file_field :photo, class:"form-control" %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :photo, class:'form-label' %>
+        <%= f.file_field :photo, class:'form-control' %>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.label :docs, class:"form-label" %><br>
-        <%= f.file_field :docs, class:"form-control", multiple: true %>
+      <div class='mb-3 col-md-6'>
+        <%= f.label :docs, class:'form-label' %>
+        <%= f.file_field :docs, class:'form-control', multiple: true %>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= f.submit "Save", class:"btn btn-primary w-100"%>
+      <div class='mb-3 col-md-6'>
+        <%= f.submit 'Save', class:'btn btn-primary w-100'%>
       </div>
-      <div class="mb-3 col-md-6">
-        <%= link_to "Cancel", new_student_path, class:"btn btn-danger w-100"%>
+      <div class='mb-3 col-md-6'>
+        <%= link_to 'Cancel', new_student_path, class:'btn btn-danger w-100'%>
       </div>
     </div>
   <% end %>

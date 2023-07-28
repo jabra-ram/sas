@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   post '/admins/invite/:token', to: 'admins#process_invite'
   post '/markread', to: 'admins#mark_read', as: 'mark_read'
   get '/paymentstatus', to: 'students#payment_status', as: 'payment_status'
+  get '/class_categories/:id/sections', to: 'sections#dropdown_sections'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

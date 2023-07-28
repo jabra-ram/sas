@@ -1,27 +1,27 @@
 <% unless @students.nil? %>
   <% if @students.empty? %>
-    <h2 class="text-center" >No student found matching your query.</h2>
+    <h2 class='text-center' >No student found matching your query.</h2>
   <% else %>
-    <h1 class="text-center"> Students </h1>
+    <h1 class='text-center'> Students </h1>
     <div class='table-responsive mb-5'>
-      <table class="table table-hover container table-bordered border-dark text-center">
+      <table class='table table-hover container table-bordered border-dark text-center'>
         <thead>
           <tr>
-            <th scope="col">Student Id</th>
-            <th scope="col">Photo URL</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Date of birth</th>
-            <th scope="col">Age</th>
-            <th scope="col">Class</th>
-            <th scope="col">Section</th>
-            <th scope="col">Academic Year</th>
-            <th scope="col">Father's Name</th>
-            <th scope="col">Mother's Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope='col'>Student Id</th>
+            <th scope='col'>Photo URL</th>
+            <th scope='col'>Name</th>
+            <th scope='col'>Email</th>
+            <th scope='col'>Date of birth</th>
+            <th scope='col'>Age</th>
+            <th scope='col'>Class</th>
+            <th scope='col'>Section</th>
+            <th scope='col'>Academic Year</th>
+            <th scope='col'>Father's Name</th>
+            <th scope='col'>Mother's Name</th>
+            <th scope='col'>Address</th>
+            <th scope='col'>Contact</th>
+            <th scope='col'>Edit</th>
+            <th scope='col'>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
             <tr>
               <td><%= s.id %></td>
               <% if s.photo.attached? %>
-                <td><%= link_to "Click here", url_for(s.photo)%></td>
+                <td><%= link_to 'Click here', url_for(s.photo)%></td>
               <% else %>
                 <td>No profile picture</td>
               <% end %>
@@ -44,10 +44,10 @@
               <td><%= s.mother_name %></td>
               <td><%= s.address %></td>
               <td><%= s.contact_number %></td>
-              <td><%= link_to "Edit", edit_student_path(s), class:"btn btn-warning" %></td>
+              <td><%= link_to 'Edit', edit_student_path(s), class:'btn btn-warning' %></td>
               <td>
-                <%= form_with model: @student, url: student_path(s), method: :delete, data: {confirm: "Are you sure?"} do |f| %>
-                  <%= f.submit "Delete", class:"btn, btn-danger" %>
+                <%= form_with model: @student, url: student_path(s), method: :delete, data: {confirm: 'Are you sure?'} do |f| %>
+                  <%= f.submit 'Delete', class:'btn, btn-danger' %>
                 <% end %>
               </td>
             </tr>

@@ -1,0 +1,21 @@
+<div class='container'>
+  <div class='clearfix mb-3'>
+    <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
+  </div>
+  <div class='w-res mx-auto p-4 text-dark border border-dark'>
+    <h1 class='text-center'> Update Class</h1>
+    <%= form_with model: @class_category do |f|%>
+      <div class='mb-3'>
+        <%= f.label :classname, class:'form-label required' %>
+        <%= f.number_field :classname, class:'form-control' %>
+        <p class='text-danger'><%= show_errors(@class_category, :classname) %></p>
+      </div>
+      <div class='mb-3'>
+        <%= f.label :sections, class:'form-label required' %>
+        <%= f.select :sections, Section.pluck(:section, :id), {}, { class: 'form-select', multiple: true }%>
+        <p class='p-2'> note: use <code>ctrl</code> button to select multiple sections </p>
+      </div>
+      <%= f.submit 'Update', class:'btn btn-primary'%>
+    <% end %>
+  </div>
+</div>

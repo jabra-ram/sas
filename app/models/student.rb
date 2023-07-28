@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # This is student model
+# rubocop:disable Metrics/ClassLength
 class Student < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -16,6 +17,7 @@ class Student < ApplicationRecord
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'invalid email' },
                     uniqueness: { message: 'email is already taken' }
   validates :date_of_birth, presence: { message: 'enter valid date' }
+  validates :age, presence: true, numericality: { greater_than: 3, message: 'must be greater than 3' }
   validates :academic_year, presence: { message: 'year cannot be null' },
                             numericality: { greater_than: 2011, less_than_or_equal_to: Date.today.year,
                                             message: 'enter a valid year' }
@@ -25,6 +27,20 @@ class Student < ApplicationRecord
   validates :contact_number,  presence: { message: 'contact number cannot be null' },
                               length: { minimum: 8, maximum: 10, message: 'enter valid number' },
                               numericality: { greater_than: 0, message: 'enter a valid  number' }
+  before_save :valid_age_for_class
+
+  def valid_age_for_class
+    unless class_category&.age_criterium
+      errors.add(:base,
+                 'please add age criteria for the class, without age criteria the required age cannot be determined!')
+      throw(:abort)
+    end
+    age_criteria = class_category.age_criterium
+    return if age_criteria.date_of_birth_after <= date_of_birth && age_criteria.date_of_birth_before >= date_of_birth
+
+    errors.add(:base, 'The age criteria for the class does not allow the student to be admitted!')
+    throw(:abort)
+  end
 
   def self.index_data
     __elasticsearch__.create_index! force: true
@@ -108,3 +124,4 @@ class Student < ApplicationRecord
   index_data
 end
 # rubocop:enable Metrics/MethodLength,Style/HashSyntax
+# rubocop:enable Metrics/ClassLength

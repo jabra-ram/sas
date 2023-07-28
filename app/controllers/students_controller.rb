@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
     if @student.destroy
       redirect_to students_path, notice: 'Record deleted!'
     else
-      render :new, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 
