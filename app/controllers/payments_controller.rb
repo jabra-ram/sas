@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
       send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
       redirect_to payments_path, notice: 'Record updated!'
     else
-      render :new
+      render :edit
     end
   end
 

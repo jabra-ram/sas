@@ -78,5 +78,38 @@ RSpec.describe Student, type: :model do
       expect(student).not_to be_valid
     end
   end
+  describe '.index_data' do
+    it 'creates the Elasticsearch index and imports data' do
+      expect(Student.__elasticsearch__).to receive(:create_index!).with(force: true)
+      expect(Student.__elasticsearch__).to receive(:import)
+
+      Student.index_data
+    end
+  end
+
+  describe '.as_indexed_json' do
+    it 'returns the indexed JSON representation' do
+      student = FactoryBot.build(:student)
+
+      indexed_json = student.as_indexed_json
+
+      expect(indexed_json).to have_key(:name)
+      expect(indexed_json[:name]).to eq('mohit verma')
+      expect(indexed_json).to have_key(:email)
+      expect(indexed_json[:email]).to eq('mohit@gmail.com')
+      expect(indexed_json).to have_key(:date_of_birth)
+      expect(indexed_json[:date_of_birth]).to eq(Date.parse('02-03-2016'))
+      expect(indexed_json).to have_key(:academic_year)
+      expect(indexed_json[:academic_year]).to eq(2023)
+      expect(indexed_json).to have_key(:age)
+      expect(indexed_json[:age]).to eq(6)
+      expect(indexed_json).to have_key(:father_name)
+      expect(indexed_json[:father_name]).to eq('rajesh verma')
+      expect(indexed_json).to have_key(:mother_name)
+      expect(indexed_json[:mother_name]).to eq('menka verma')
+      expect(indexed_json).to have_key(:address)
+      expect(indexed_json[:address]).to eq('kolkata')
+    end
+  end
 end
 # rubocop: enable Metrics/BlockLength

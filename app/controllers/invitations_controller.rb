@@ -16,7 +16,7 @@ class InvitationsController < ApplicationController
       AdminMailer.with(invitation: @invitation).invite_email.deliver_now
       redirect_to admins_path, notice: 'Invitation sent successfully'
     else
-      render :new, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 end

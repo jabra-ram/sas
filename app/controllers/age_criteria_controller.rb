@@ -31,7 +31,7 @@ class AgeCriteriaController < ApplicationController
     if @age_criteria.update(age_criteria_params)
       redirect_to age_criteria_path, notice: 'Criteria updated!'
     else
-      render :new
+      render :edit
     end
   end
 
@@ -40,7 +40,7 @@ class AgeCriteriaController < ApplicationController
     if @age_criteria.destroy
       redirect_to age_criteria_path, notice: 'Data deleted successfully!'
     else
-      render :new
+      redirect_to age_criteria_path, alert: 'something went wrong'
     end
   end
 

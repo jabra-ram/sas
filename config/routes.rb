@@ -23,5 +23,7 @@ Rails.application.routes.draw do
   post '/markread', to: 'admins#mark_read', as: 'mark_read'
   get '/paymentstatus', to: 'students#payment_status', as: 'payment_status'
   get '/class_categories/:id/sections', to: 'sections#dropdown_sections'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  match '*unmatched', to: 'application#render_not_found', via: :all, constraints: lambda { |req|
+    !req.path.match(%r{\A/rails/active_storage/})
+  }
 end

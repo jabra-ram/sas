@@ -31,7 +31,7 @@ class FeeStructuresController < ApplicationController
     if @fee_structure.update(fee_structure_params)
       redirect_to fee_structures_path, notice: 'Data Updated successfully!'
     else
-      redirect_to edit_fee_structure_path, alert: 'Enter Correct details!!!'
+      render :edit
     end
   end
 
@@ -40,7 +40,7 @@ class FeeStructuresController < ApplicationController
     if @fee_structure.destroy
       redirect_to fee_structures_path, notice: 'Data deleted successfully!'
     else
-      render :new, alert: 'Something went wrong!'
+      redirect_to fee_structures_path, alert: 'Something went wrong!'
     end
   end
 

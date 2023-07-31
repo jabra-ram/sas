@@ -10,10 +10,10 @@ section2 = Section.create(section: 'B')
 Section.create(section: 'C')
 Section.create(section: 'D')
 
-class1 = ClassCategory.create(classname: '1')
-class2 = ClassCategory.create(classname: '2')
-class3 = ClassCategory.create(classname: '3')
-class4 = ClassCategory.create(classname: '4')
+class1 = ClassCategory.create(classname: 1)
+class2 = ClassCategory.create(classname: 2)
+class3 = ClassCategory.create(classname: 3)
+class4 = ClassCategory.create(classname: 4)
 
 class1.sections << section1
 class1.sections << section2
@@ -40,7 +40,7 @@ s2 = Student.create(name: 'Rakesh Pareek', email: 'rakesh123@gmail.com', date_of
                     academic_year: 2023, father_name: 'Manish Pareek', mother_name: 'Riya Pareek',
                     address: 'Nabapally, Sector-4, Kolkata',
                     contact_number: 369_635_334, class_category_id: 1, section_id: 1)
-s3 = Student.create(name: 'Arvind Kumar', email: 'arvind43@gmail.com', date_of_birth: '18-03-2016', age: 6,
+s3 = Student.create(name: 'Arvind Kumar', email: 'arvind43@gmail.com', date_of_birth: '18-05-2016', age: 6,
                     academic_year: 2023, father_name: 'Raj Kumar', mother_name: 'Shreya Kumar',
                     address: 'Chingarighata, Sector-4, Kolkata',
                     contact_number: 3_695_635_390, class_category_id: 2, section_id: 1)

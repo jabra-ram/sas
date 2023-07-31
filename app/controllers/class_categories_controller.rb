@@ -17,9 +17,7 @@ class ClassCategoriesController < ApplicationController
     cls = ClassCategory.find_by(classname: params[:class_category][:classname])
     return redirect_to class_categories_path, alert: 'Class already exist! You can edit the class.' unless cls.nil?
 
-    @class_category.save
-    check_and_save(params[:class_category][:sections])
-    redirect_to class_categories_path, notice: 'class added successfully!'
+    save(params[:class_category][:sections])
   end
 
   def edit
@@ -29,12 +27,7 @@ class ClassCategoriesController < ApplicationController
   def update
     @class_category = ClassCategory.find(params[:id])
     @class_category.sections.destroy_all
-    if @class_category.update(class_category_params)
-      check_and_save(params[:class_category][:sections])
-      redirect_to class_categories_path, notice: 'class Updated successfully!'
-    else
-      render :new
-    end
+    update_and_save(params[:class_category][:sections], class_category_params)
   end
 
   def destroy
@@ -42,7 +35,7 @@ class ClassCategoriesController < ApplicationController
     if @class_category.destroy
       redirect_to class_categories_path, notice: 'Record deleted successfully!'
     else
-      render :new
+      redirect_to class_categories_path, alert: 'Something Went Wrong!!!'
     end
   end
 

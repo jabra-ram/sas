@@ -9,7 +9,7 @@ class Student < ApplicationRecord
   has_many_attached :docs
   belongs_to :class_category
   belongs_to :section
-  has_one :payment
+  has_one :payment, dependent: :destroy
 
   validates :name, presence: { message: 'name cannot be null' },
                    length: { minimum: 4, message: 'name should be minimum 4 characters' }

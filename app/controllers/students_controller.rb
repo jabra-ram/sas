@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
       attach_documents
       redirect_to students_path, notice: 'Record updated!'
     else
-      render :new
+      render :edit
     end
   end
 

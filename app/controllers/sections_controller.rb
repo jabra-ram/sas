@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
     if @section.save
       redirect_to sections_path, notice: 'Section created successfully!'
     else
-      render :new, alert: 'Enter correct details please!'
+      render :new
     end
   end
 
@@ -35,7 +35,7 @@ class SectionsController < ApplicationController
     if @section.update(section_params)
       redirect_to sections_path, notice: 'Section edited successfully!'
     else
-      render :new, alert: 'Enter correct details please!'
+      render :edit
     end
   end
 
