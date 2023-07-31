@@ -24,10 +24,17 @@ RSpec.describe Invitation, type: :model do
       invitation.expires_at = nil
       expect(invitation).not_to be_valid
     end
-    it 'is not valid without unique token date' do
+    it 'is not valid without token' do
       invitation = FactoryBot.build(:invitation)
       invitation.token = nil
       expect(invitation).not_to be_valid
+    end
+  end
+  describe 'Callbacks' do
+    it 'converts email to lowercase before saving' do
+      invitation = FactoryBot.build(:invitation, email: 'TEST@example.com')
+      invitation.save
+      expect(invitation.email).to eq('test@example.com')
     end
   end
 end

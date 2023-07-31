@@ -3,6 +3,7 @@
 # This is fee model
 class FeeStructure < ApplicationRecord
   belongs_to :class_category
+
   validates :admission_fees, presence: { message: "admission fee can't be empty" },
                              numericality: { greater_than_or_equal_to: 0, message: 'must be non-negative' }
   validates :annual_admission_fees, presence: { message: "annual admission fee can't be empty" },

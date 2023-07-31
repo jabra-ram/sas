@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :class_category do
-    classname { '2' }
+  factory :notification do
+    message { 'Approved' }
   end
 end

@@ -1,8 +1,36 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+
 # rubocop: disable Metrics/BlockLength
 RSpec.describe Student, type: :model do
+  describe 'Associations' do
+    it 'has one attached photo' do
+      association = described_class.reflect_on_association(:photo_attachment)
+      expect(association.macro).to eq(:has_one)
+    end
+
+    it 'has many attached docs' do
+      association = described_class.reflect_on_association(:docs_attachments)
+      expect(association.macro).to eq(:has_many)
+    end
+
+    it 'belongs to a class_category' do
+      association = described_class.reflect_on_association(:class_category)
+      expect(association.macro).to eq(:belongs_to)
+    end
+
+    it 'belongs to a section' do
+      association = described_class.reflect_on_association(:section)
+      expect(association.macro).to eq(:belongs_to)
+    end
+
+    it 'has one payment' do
+      association = described_class.reflect_on_association(:payment)
+      expect(association.macro).to eq(:has_one)
+    end
+  end
+
   describe 'validations' do
     it 'is not valid without an name' do
       student = FactoryBot.build(:student)

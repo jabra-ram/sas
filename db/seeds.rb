@@ -32,26 +32,26 @@ AgeCriterium.create(date_of_birth_after: '31-03-2017', date_of_birth_before: '01
 AgeCriterium.create(date_of_birth_after: '31-03-2016', date_of_birth_before: '01-04-2017', age: 6,
                     date_as_on: '01-04-2023', class_category_id: 2)
 
-s1 = Student.create(name: 'Rahul Gupta', email: 'rahul23@gmail.com', date_of_birth: '01-07-2018', age: 5,
+s1 = Student.create(name: 'Rahul Gupta', email: 'rahul23@gmail.com', date_of_birth: '01-07-2017', age: 5,
                     academic_year: 2023, father_name: 'Vivek Gupta', mother_name: 'Geeta Gupta',
                     address: 'Sector-5, Kolkata',
                     contact_number: 1_234_567_890, class_category_id: 1, section_id: 1)
-s2 = Student.create(name: 'Rakesh Pareek', email: 'rakesh123@gmail.com', date_of_birth: '14-04-2018', age: 5,
+s2 = Student.create(name: 'Rakesh Pareek', email: 'rakesh123@gmail.com', date_of_birth: '14-04-2017', age: 5,
                     academic_year: 2023, father_name: 'Manish Pareek', mother_name: 'Riya Pareek',
                     address: 'Nabapally, Sector-4, Kolkata',
                     contact_number: 369_635_334, class_category_id: 1, section_id: 1)
-s3 = Student.create(name: 'Arvind Kumar', email: 'arvind43@gmail.com', date_of_birth: '18-03-2017', age: 6,
+s3 = Student.create(name: 'Arvind Kumar', email: 'arvind43@gmail.com', date_of_birth: '18-03-2016', age: 6,
                     academic_year: 2023, father_name: 'Raj Kumar', mother_name: 'Shreya Kumar',
                     address: 'Chingarighata, Sector-4, Kolkata',
                     contact_number: 3_695_635_390, class_category_id: 2, section_id: 1)
-s4 = Student.create(name: 'Azad Singh', email: 'azad90@gmail.com', date_of_birth: '08-05-2017', age: 6,
+s4 = Student.create(name: 'Azad Singh', email: 'azad90@gmail.com', date_of_birth: '08-03-2017', age: 6,
                     academic_year: 2023, father_name: 'Manoj Singh', mother_name: 'Priya Singh',
                     address: 'Bali, Kolkata',
                     contact_number: 9_675_635_782, class_category_id: 2, section_id: 2)
-s5 = Student.create(name: 'Megha Yadav', email: 'megha432@gmail.com', date_of_birth: '24-03-2015', age: 7,
+s5 = Student.create(name: 'Megha Yadav', email: 'megha432@gmail.com', date_of_birth: '24-10-2016', age: 6,
                     academic_year: 2023, father_name: 'Presh Yadav', mother_name: 'Sita Yadav',
                     address: 'Sector-4, Kolkata',
-                    contact_number: 9_500_635_390, class_category_id: 3, section_id: 1)
+                    contact_number: 9_500_635_390, class_category_id: 2, section_id: 1)
 path = Rails.root.join('app', 'assets', 'images')
 path2 = Rails.root.join('app', 'assets', 'docs')
 s1.photo.attach(io: File.open(path.join('profile.webp')), filename: 'profile.webp')
