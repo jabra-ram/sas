@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='mb-3 col-md-3'>
       <%= form.label :filter_column, 'Filter By', class:'form-label' %>
-      <%= form.select :filter_column, ['age', ['class','classname'], 'section', 'academic_year'], {value: params[:search_students].presence && params[:search_students][:filter_column], prompt: 'Please Select'}, class:'form-select' %>
+      <%= form.select :filter_column, ['age', ['class', 'class_category_id'], 'academic_year'], {value: params[:search_students].presence && params[:search_students][:filter_column], prompt: 'Please Select'}, class:'form-select' %>
     </div>
     <div class='mb-3 col-md-2'>
     <%= form.label :filter_value, 'Filter Value', class:'form-label' %>
@@ -10,7 +10,7 @@
     </div>
     <div class='mb-3 col-md-3'>
       <%= form.label :sort_by, 'Sort By', class:'form-label' %>
-      <%= form.select :sort_by, ['name', 'email', 'date_of_birth', ['class', 'classname'],'academic_year'], {value: params[:search_students].presence && params[:search_students][:sort_by], prompt: 'Please Select'}, class:'form-select' %>
+      <%= form.select :sort_by, ['id', 'name', 'email', 'date_of_birth', 'age',  ['class', 'class_category_id'],['section', 'section_id'], 'academic_year', 'father_name', 'mother_name', 'address', 'contact_number'], {value: params[:search_students].presence && params[:search_students][:sort_by], prompt: 'Please Select'}, class:'form-select' %>
     </div>
     <div class='mb-3 col-md-4 d-flex align-items-end'>
       <%= form.text_field :query, value: params[:search_students].presence && params[:search_students][:query], placeholder:'Search', class:'form-control mx-2' %>

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # This is student model
-# rubocop:disable Metrics/ClassLength
 class Student < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
@@ -48,9 +47,12 @@ class Student < ApplicationRecord
   end
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'true' do
+      indexes :id, type: :text
+      indexes :date_of_birth, type: :keyword
       indexes :name, type: :text, analyzer: :english, fielddata: true
       indexes :email, type: :text, analyzer: :english, fielddata: true
       indexes :academic_year, type: :text, analyzer: :english, fielddata: true
+      indexes :age, type: :text
       indexes :address, type: :text, analyzer: :english
       indexes :father_name, type: :text, analyzer: :english, fielddata: true
       indexes :mother_name, type: :text, analyzer: :english
@@ -61,9 +63,10 @@ class Student < ApplicationRecord
       indexes :email_sort, type: :keyword
     end
   end
-  # rubocop:disable Metrics/MethodLength,Style/HashSyntax
+  # rubocop:disable all
   def as_indexed_json(_options = {})
     {
+      id: id,
       name: name,
       email: email,
       academic_year: academic_year,
@@ -82,7 +85,7 @@ class Student < ApplicationRecord
     }
   end
 
-  def self.search_query(query, filter_column, filter_value, sort_by)
+  def self.search_query(query)
     search_params = {
       query: {
         bool: {
@@ -90,38 +93,15 @@ class Student < ApplicationRecord
             {
               multi_match: {
                 query:,
-                fields: %i[name email address academic_year father_name mother_name contact_number]
+                fields: %i[id name email date_of_birth address age academic_year classname father_name mother_name contact_number]
               }
             }
           ]
         }
       }
     }
-    if !filter_column.empty? && !filter_value.empty?
-      search_params[:query][:bool][:filter] = {
-        term: {
-          filter_column.to_sym => filter_value
-        }
-      }
-    end
-    if sort_by && !sort_by.empty?
-      sort_field = if sort_by == 'name'
-                     'name_sort'
-                   elsif sort_by == 'email'
-                     'email_sort'
-                   else
-                     sort_by
-                   end
-      search_params[:sort] = {
-        sort_field.to_sym => {
-          order: :asc
-        }
-      }
-    end
-
     search(search_params)
   end
   index_data
 end
 # rubocop:enable Metrics/MethodLength,Style/HashSyntax
-# rubocop:enable Metrics/ClassLength

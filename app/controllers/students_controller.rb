@@ -38,7 +38,7 @@ class StudentsController < ApplicationController
       attach_documents
       redirect_to students_path, notice: 'Record updated!'
     else
-      redirect_to edit_student_path, alert: 'Something went wrong!!!'
+      render :new
     end
   end
 
@@ -52,13 +52,7 @@ class StudentsController < ApplicationController
   end
 
   def search
-    query = params[:search_students][:query]
-    filter_column = params[:search_students][:filter_column]
-    filter_value = params[:search_students][:filter_value]
-    sort_by = params[:search_students][:sort_by]
-    return unless query
-
-    @students = Student.search_query(query, filter_column, filter_value, sort_by).records
+    @students = search_obj(params, Student)
   end
 
   def payment_status

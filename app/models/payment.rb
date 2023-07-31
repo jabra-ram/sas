@@ -8,7 +8,7 @@ class Payment < ApplicationRecord
   validates :student_id, presence: { message: 'enter id' },
                          numericality: { greater_than: 0, message: 'enter valid student id' }
   validates :mode_of_payment, presence: true
-  validates :amount, presence: true, numericality: { greater_than: 0, message: 'enter valid amount' }
+  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0, message: 'enter valid amount' }
   before_save :fee_structure_exists
 
   private

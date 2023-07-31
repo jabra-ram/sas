@@ -15,4 +15,32 @@ class ApplicationController < ActionController::Base
 
     redirect_to login_path, alert: 'Not Authorized!!!'
   end
+
+  def search_obj(params, model)
+    query = extract_query(params)
+    results = perform_search(query, model)
+    results = apply_filters(results, params)
+    sort_results(results, params[:search_students][:sort_by])
+  end
+
+  def extract_query(params)
+    params[:search_students].presence && params[:search_students][:query]
+  end
+
+  def perform_search(query, model)
+    query.present? ? model.search_query(query.strip).records : model.all
+  end
+
+  def apply_filters(results, params)
+    col = params[:search_students][:filter_column]
+    return results.where(col => params[:search_students][:filter_value]) unless col.nil? || col.empty?
+
+    results
+  end
+
+  def sort_results(results, sort_by)
+    return results.order(sort_by => :asc) unless sort_by.nil? || sort_by.empty?
+
+    results
+  end
 end

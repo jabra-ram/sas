@@ -18,7 +18,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	box-sizing: border-box !important;
 	background-color: #B5FED9 !important;
 }
 
@@ -39,7 +39,7 @@ body {
 
 .card:hover {
 	opacity: 1;
-	border: 2px solid black;
+	mix-blend-mode: multiply;
 }
 
 .w-res {
