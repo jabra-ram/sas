@@ -8,12 +8,12 @@ module PaymentsHelper
     message_mail = "Your payment status is '#{@payment[:status]}'."
     ActionCable.server.broadcast('notification_channel', message)
     AdminMailer.with(student: @payment.student, message: message_mail).status_email.deliver_now
-    create_notification_admin
+    create_notification_admin(message)
   end
 
-  def create_notification_admin
+  def create_notification_admin(message)
     Admin.where.not(id: current_admin[:id]).each do |admin|
-      Notification.create(recipient_id: admin[:id], sender_id: current_admin[:id], message: @payment[:status],
+      Notification.create(recipient_id: admin[:id], sender_id: current_admin[:id], message:,
                           read_status: false)
     end
   end

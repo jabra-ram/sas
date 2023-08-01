@@ -14,7 +14,8 @@ class FeeStructuresController < ApplicationController
   def create
     @fee_structure = FeeStructure.new(fee_structure_params)
     if FeeStructure.where(class_category_id: params[:fee_structure][:class_category_id]).empty? == false
-      redirect_to fee_structures_path, alert: 'Fee Structure already exist for this class!'
+      flash.now[:alert] = 'Fee Structure already exist for this class!'
+      render :new
     elsif @fee_structure.save
       redirect_to fee_structures_path, notice: 'Data Added successfully!'
     else

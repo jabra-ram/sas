@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
+# rubocop: disable Metrics/BlockLength
 Rails.application.routes.draw do
   resources :admins, only: [:index]
   resources :invitations, only: %i[new create]
-  resources :sections, :class_categories, :fee_structures, :age_criteria, :payments
+  resources :sections, except: [:show]
+  resources :class_categories, except: [:show]
+  resources :fee_structures, except: [:show]
+  resources :age_criteria, except: [:show]
+  resources :payments, except: [:show]
   resources :students do
     collection do
       get :search
@@ -27,3 +32,4 @@ Rails.application.routes.draw do
     !req.path.match(%r{\A/rails/active_storage/})
   }
 end
+# rubocop: enable Metrics/BlockLength
