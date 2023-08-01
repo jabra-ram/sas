@@ -14,7 +14,8 @@ class AgeCriteriaController < ApplicationController
   def create
     @age_criteria = AgeCriterium.new(age_criteria_params)
     if AgeCriterium.where(class_category_id: params[:age_criterium][:class_category_id]).empty? == false
-      redirect_to age_criteria_path, notice: 'Age criteria already exist for this class!'
+      flash.now[:alert] = 'Age criteria already exist for this class!'
+      render :new
     elsif @age_criteria.save
       redirect_to age_criteria_path, notice: 'Criteria added!'
     else

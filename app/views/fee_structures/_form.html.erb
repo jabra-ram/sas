@@ -2,7 +2,7 @@
     <div class='row g-3'>
       <div class='mb-3 col-md-6'>
         <%= f.label :class_category_id, 'Class', class:'form-label required' %>
-        <%= f.select :class_category_id, ClassCategory.pluck('classname','id'),{}, class:'form-select' %>
+        <%= f.select :class_category_id, ClassCategory.pluck('classname','id'),{}, class:'form-select', disabled: is_edit %>
       </div>
       <div class='mb-3 col-md-6'>
         <%= f.label :admission_fees, class:'form-label required' %>

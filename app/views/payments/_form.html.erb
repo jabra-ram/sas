@@ -3,7 +3,7 @@
   <div class='row g-3'>
     <div class='mb-3 col-md-4'>
       <%= f.label :student_id, 'Student Id', class:'form-label required' %>
-      <%= f.number_field :student_id, class:'form-control' %>
+      <%= f.number_field :student_id, class:'form-control', disabled: is_edit %>
       <p class='text-danger'><%= show_errors(@payment, :student_id) %></p>
     </div>
     <div class='mb-3 col-md-4'>
