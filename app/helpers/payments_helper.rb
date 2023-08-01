@@ -2,6 +2,19 @@
 
 # This is payments helper
 module PaymentsHelper
+  def save_payment
+    unless Payment.find_by(student_id: payment_params[:student_id]).nil?
+      flash.now[:alert] = 'payment for this student already exists!!!'
+      return render :new
+    end
+    if @payment.save
+      send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
+      redirect_to payments_path, notice: 'Record saved!'
+    else
+      render :new
+    end
+  end
+
   def send_payment_notification
     student_name = @payment.student.name
     message = "The payment status of #{student_name} is set to #{@payment[:status]} by #{current_admin[:email]}"

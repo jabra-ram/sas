@@ -13,12 +13,7 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(payment_params)
-    if @payment.save
-      send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
-      redirect_to payments_path, notice: 'Record saved!'
-    else
-      render :new
-    end
+    save_payment
   end
 
   def edit
