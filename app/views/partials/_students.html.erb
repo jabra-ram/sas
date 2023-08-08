@@ -30,7 +30,7 @@
             <tr>
               <td><%= s.id %></td>
               <% if s.photo.attached? %>
-                <td><%= link_to 'photo', url_for(s.photo), class:'btn btn-primary px-2 py-1' %></td>
+                <td><%= image_tag s.photo %></td>
               <% else %>
                 <td>No profile picture</td>
               <% end %>

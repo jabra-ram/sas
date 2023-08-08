@@ -57,12 +57,13 @@ class StudentsController < ApplicationController
 
   def payment_status
     @student = Student.find_by_email(params[:email])
-    if @student&.payment&.[](:status) == 'Approved'
-      redirect_to login_path, notice: 'your payment is approved.'
-    elsif @student
-      redirect_to login_path, alert: 'your payment is pending.'
+    payment_status_messages = { 'Approved' => 'approved', 'Processed' => 'processed',
+                                'Rejected' => 'rejected', 'Pending' => 'pending' }
+    payment_status = @student&.payment&.[](:status)
+    if payment_status_messages.key?(payment_status)
+      redirect_to login_path, notice: "Your payment is #{payment_status_messages[payment_status]}."
     else
-      redirect_to login_path, alert: 'enter valid email id / student does not exist.'
+      redirect_to login_path, alert: 'Student does not exist!'
     end
   end
 

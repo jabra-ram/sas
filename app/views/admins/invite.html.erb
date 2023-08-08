@@ -6,8 +6,9 @@
     <h1 class='text-center'> Complete Sign-up </h1>
     <%= form_with model: @admin, url: invite_admin_path(@invitation.token) do |f|%>
       <div class='mb-3'>
-        <%= f.label :email, class:'form-label' %><br>
+        <%= f.label :email, class:'form-label' %>
         <%= f.email_field :email, value: @invitation.email, disabled: true, class:'form-control' %>
+        <p class='text-danger'><%= show_errors(@admin, :email) %></p>
       </div>
       <div class='mb-3'>
         <%= f.label :password, class:'form-label'  %>
