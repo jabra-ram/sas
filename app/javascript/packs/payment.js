@@ -6,7 +6,7 @@ x.on('change', getData);
 function getData() {
   if (x.val()) {
     $.ajax({
-      url: `/students/${x.val()}`,
+      url: `/student_data/${x.val()}`,
       type: 'GET',
       dataType: 'json',
       success: function (response) {

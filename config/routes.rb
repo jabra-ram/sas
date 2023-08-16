@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   post '/markread', to: 'admins#mark_read', as: 'mark_read'
   get '/paymentstatus', to: 'students#payment_status', as: 'payment_status'
   get '/class_categories/:id/sections', to: 'sections#dropdown_sections'
+  get '/student_data/:id', to: 'students#student_data'
+  delete '/purge_document/:id', to: 'students#purge_document', as: 'purge_document'
   match '*unmatched', to: 'application#render_not_found', via: :all, constraints: lambda { |req|
     !req.path.match(%r{\A/rails/active_storage/})
   }

@@ -13,9 +13,6 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    respond_to do |format|
-      format.json { render json: @student }
-    end
   end
 
   def create
@@ -49,6 +46,19 @@ class StudentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def student_data
+    @student = Student.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @student }
+    end
+  end
+
+  def purge_document
+    doc = ActiveStorage::Attachment.find(params[:id])
+    doc.purge
+    redirect_back fallback_location: '/', alert: 'document deleted!'
   end
 
   def search

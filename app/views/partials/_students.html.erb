@@ -8,19 +8,11 @@
         <thead>
           <tr>
             <th scope='col'>Student Id</th>
-            <th scope='col'>Photo</th>
-            <th scope='col'>Documents</th>
             <th scope='col'>Name</th>
             <th scope='col'>Email</th>
             <th scope='col'>Date of birth</th>
-            <th scope='col'>Age</th>
-            <th scope='col'>Class</th>
-            <th scope='col'>Section</th>
-            <th scope='col'>Academic Year</th>
-            <th scope='col'>Father's Name</th>
-            <th scope='col'>Mother's Name</th>
             <th scope='col'>Address</th>
-            <th scope='col'>Contact</th>
+            <th scope='col'>Show</th>
             <th scope='col'>Edit</th>
             <th scope='col'>Delete</th>
           </tr>
@@ -29,31 +21,11 @@
           <% @students.each do |s| %>
             <tr>
               <td><%= s.id %></td>
-              <% if s.photo.attached? %>
-                <td><%= image_tag s.photo %></td>
-              <% else %>
-                <td>No profile picture</td>
-              <% end %>
-              <% if s.docs.attached? %>
-                <td>
-                  <% s.docs.each do |doc| %>
-                    <%= link_to 'doc', url_for(doc), class:'btn btn-primary px-2 py-1 m-1' %>
-                  <% end %>
-                </td>
-              <% else %>
-                <td>No Documents</td>
-              <% end %>
               <td><%= s.name %></td>
               <td><%= s.email %></td>
               <td><%= s.date_of_birth %></td>
-              <td><%= s.age %></td>
-              <td><%= ClassCategory.find(s.class_category_id).classname %></td>
-              <td><%= Section.find(s.section_id).section %></td>
-              <td><%= s.academic_year %></td>
-              <td><%= s.father_name %></td>
-              <td><%= s.mother_name %></td>
               <td><%= s.address %></td>
-              <td><%= s.contact_number %></td>
+              <td><%= link_to 'Show', student_path(s), class:'btn btn-info' %></td>
               <td><%= link_to 'Edit', edit_student_path(s), class:'btn btn-warning' %></td>
               <td>
                 <%= form_with model: @student, url: student_path(s), method: :delete, data: {confirm: 'Are you sure?'} do |f| %>
