@@ -22,6 +22,15 @@ body {
 	background-color: #B5FED9 !important;
 }
 
+.bold{
+	font-weight: bold !important;
+}
+
+.modal-content{
+	max-height: 75vh;
+	overflow-y: auto;
+}
+
 .navbar {
 	background-color: #98CBB4 !important;
 }
@@ -41,7 +50,9 @@ body {
 	opacity: 1;
 	mix-blend-mode: multiply;
 }
-
+#notifications-container p{
+	font-size: 14px;
+}
 .w-res {
 	min-width: fit-content;
 	width: 30%;

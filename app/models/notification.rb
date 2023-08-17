@@ -5,4 +5,5 @@ class Notification < ApplicationRecord
   belongs_to :recipient, class_name: 'Admin'
 
   scope :unread, -> { where(read_status: false) }
+  scope :read, -> { where(read_status: true) }
 end

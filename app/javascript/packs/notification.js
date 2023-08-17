@@ -4,8 +4,8 @@ $('#mark-read-btn').on('click', function () {
     url: '/markread',
     dataType: 'json',
     success: function (res) {
-      $('#notifications-container').empty();
-      $('#notification-count').text("0");
+      $('#notifications-container p').removeClass('bold');
+      $('#notification-count').text("");
     },
     error: function (error) {
       console.error(error);

@@ -12,11 +12,16 @@ consumer.subscriptions.create("NotificationChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
     const notificationsContainer = document.getElementById("notifications-container");
-    const notificationItem = document.createElement("div");
+    const notificationItem = document.createElement("p");
+    const hrelement = document.createElement("hr");
     const count = document.getElementById("notification-count");
-    count.textContent = parseInt(count.textContent)+1;
-    notificationItem.classList.add("notification-item");
+    count.textContent = count.textContent==""?"1":parseInt(count.textContent)+1;
+    notificationItem.classList.add("bold");
+    notificationItem.classList.add("m-0");
+    notificationItem.classList.add("p-1");
+    hrelement.classList.add("m-0");
     notificationItem.textContent = data;
-    notificationsContainer.appendChild(notificationItem);
+    notificationsContainer.prepend(hrelement);
+    notificationsContainer.prepend(notificationItem);
   }
 });
