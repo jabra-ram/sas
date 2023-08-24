@@ -40,7 +40,13 @@ class ApplicationController < ActionController::Base
 
   def apply_filters(results, params)
     col = params[:search_students][:filter_column]
-    return results.where(col => params[:search_students][:filter_value]) unless col.nil? || col.empty?
+    value = params[:search_students][:filter_value]
+    if col == 'class_category_id'
+      cls = ClassCategory.find_by(classname: value)
+      value = -1
+      value = cls['id'] unless cls.nil?
+    end
+    return results.where(col => value) unless col.nil? || col.empty?
 
     results
   end

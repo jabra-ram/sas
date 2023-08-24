@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_03_082736) do
+ActiveRecord::Schema.define(version: 2023_08_24_062644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,17 +44,17 @@ ActiveRecord::Schema.define(version: 2023_07_03_082736) do
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "age_criteria", force: :cascade do |t|
-    t.date "date_of_birth_after"
-    t.date "date_of_birth_before"
-    t.integer "age"
-    t.date "date_as_on"
+    t.date "date_of_birth_after", null: false
+    t.date "date_of_birth_before", null: false
+    t.integer "age", null: false
+    t.date "date_as_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "class_category_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2023_07_03_082736) do
   end
 
   create_table "class_categories", force: :cascade do |t|
-    t.integer "classname"
+    t.integer "classname", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,12 +73,12 @@ ActiveRecord::Schema.define(version: 2023_07_03_082736) do
   end
 
   create_table "fee_structures", force: :cascade do |t|
-    t.integer "admission_fees"
-    t.integer "annual_admission_fees"
-    t.integer "caution_money"
-    t.integer "quarterly_tuition_fees"
-    t.integer "id_card_fees"
-    t.integer "total"
+    t.integer "admission_fees", null: false
+    t.integer "annual_admission_fees", null: false
+    t.integer "caution_money", null: false
+    t.integer "quarterly_tuition_fees", null: false
+    t.integer "id_card_fees", null: false
+    t.integer "total", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "class_category_id"
@@ -86,26 +86,26 @@ ActiveRecord::Schema.define(version: 2023_07_03_082736) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string "email"
-    t.string "token"
-    t.datetime "expires_at"
+    t.string "email", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "sender_id"
-    t.string "message"
-    t.boolean "read_status"
+    t.integer "recipient_id", null: false
+    t.integer "sender_id", null: false
+    t.string "message", null: false
+    t.boolean "read_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "mode_of_payment"
-    t.integer "amount"
-    t.integer "status"
+    t.integer "mode_of_payment", null: false
+    t.integer "amount", null: false
+    t.integer "status", null: false
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -114,21 +114,21 @@ ActiveRecord::Schema.define(version: 2023_07_03_082736) do
   end
 
   create_table "sections", force: :cascade do |t|
-    t.string "section"
+    t.string "section", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.date "date_of_birth"
-    t.integer "age"
-    t.integer "academic_year"
-    t.string "father_name"
-    t.string "mother_name"
-    t.text "address"
-    t.bigint "contact_number"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.date "date_of_birth", null: false
+    t.integer "age", null: false
+    t.integer "academic_year", null: false
+    t.string "father_name", null: false
+    t.string "mother_name", null: false
+    t.text "address", null: false
+    t.bigint "contact_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "class_category_id"

@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='mb-3 col-md-3'>
       <%= form.label :filter_column, 'Filter By', class:'form-label' %>
-      <%= form.select :filter_column, ['age', ['class', 'class_category_id'], 'academic_year'], {value: params[:search_students].presence && params[:search_students][:filter_column], prompt: 'Please Select'}, class:'form-select' %>
+      <%= form.select :filter_column, ['name', 'age', ['class', 'class_category_id'], 'academic_year'], {value: params[:search_students].presence && params[:search_students][:filter_column], prompt: 'Please Select'}, class:'form-select' %>
     </div>
     <div class='mb-3 col-md-2'>
     <%= form.label :filter_value, 'Filter Value', class:'form-label' %>
