@@ -6,19 +6,14 @@
     <table class='table table-hover container table-bordered border-dark text-center'>
       <thead>
         <tr>
-          <th scope='col'>S. No.</th>
           <th scope='col'>Student Id</th>
           <th scope='col'>Student Name</th>
           <th scope='col'>Email</th>
-          <th scope='col'>Class</th>
-          <th scope='col'>Academic Year</th>
-          <th scope='col'>Address</th>
-          <th scope='col'>Contact</th>
           <th scope='col'>Mode of Payment</th>
           <th scope='col'>Amount</th>
           <th scope='col'>Status</th>
-          <th scope='col'>generate invoice</th>
-          <th scope='col'>email invoice</th>
+          <th scope='col'>Date</th>
+          <th scope='col'>Show</th>
           <th scope='col'>Edit</th>
           <th scope='col'>Delete</th>
         </tr>
@@ -26,22 +21,15 @@
       <tbody>
         <% @payments.each_with_index do |p, index| %>
           <tr>
-            <td><%= index+1 %></td>
             <td><%= p.student[:id] %></td>
             <td><%= p.student[:name] %></td>
             <td><%= p.student[:email] %></td>
-            <td><%= p.student.class_category[:classname] %></td>
-            <td><%= p.student[:academic_year] %></td>
-            <td><%= p.student[:address] %></td>
-            <td><%= p.student[:contact_number] %></td>
             <td><%= p.mode_of_payment %></td>
             <td><%= p.amount %></td>
             <td><%= p.status %></td>
+            <td><%= p.created_at.to_date %></td>
             <td>
-              <%= link_to 'Pdf', generate_invoice_path(p), class:'btn btn-secondary' %>
-            </td>
-            <td>
-              <%= link_to 'Email', email_invoice_path(p), class:'btn btn-secondary' %>
+              <%= link_to 'Show', payment_path(p), class:'btn btn-info' %>
             </td>
             <td><%= link_to 'Edit', edit_payment_path(p), class:'btn btn-warning' %></td>
             <td>

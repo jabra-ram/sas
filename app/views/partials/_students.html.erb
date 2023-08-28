@@ -10,8 +10,8 @@
             <th scope='col'>Student Id</th>
             <th scope='col'>Name</th>
             <th scope='col'>Email</th>
+            <th scope='col'>Class</th>
             <th scope='col'>Date of birth</th>
-            <th scope='col'>Address</th>
             <th scope='col'>Show</th>
             <th scope='col'>Edit</th>
             <th scope='col'>Delete</th>
@@ -23,8 +23,8 @@
               <td><%= s.id %></td>
               <td><%= s.name %></td>
               <td><%= s.email %></td>
+              <td><%= s.class_category.classname %></td>
               <td><%= s.date_of_birth %></td>
-              <td><%= s.address %></td>
               <td><%= link_to 'Show', student_path(s), class:'btn btn-info' %></td>
               <td><%= link_to 'Edit', edit_student_path(s), class:'btn btn-warning' %></td>
               <td>

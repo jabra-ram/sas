@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :class_categories, except: [:show]
   resources :fee_structures, except: [:show]
   resources :age_criteria, except: [:show]
-  resources :payments, except: [:show]
+  resources :payments
   resources :students do
     collection do
       get :search

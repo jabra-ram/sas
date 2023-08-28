@@ -11,6 +11,10 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
   end
 
+  def show
+    @payment = Payment.find(params[:id])
+  end
+
   def create
     @payment = Payment.new(payment_params)
     save_payment

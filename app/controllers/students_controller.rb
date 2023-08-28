@@ -4,7 +4,7 @@
 class StudentsController < ApplicationController
   include StudentsHelper
   def index
-    @students = Student.all
+    @students = Student.all.order(:id)
   end
 
   def new
@@ -70,11 +70,7 @@ class StudentsController < ApplicationController
     payment_status_messages = { 'Approved' => 'approved', 'Processed' => 'processed',
                                 'Rejected' => 'rejected', 'Pending' => 'pending' }
     payment_status = @student&.payment&.[](:status)
-    if payment_status_messages.key?(payment_status)
-      redirect_to login_path, notice: "Your payment is #{payment_status_messages[payment_status]}."
-    else
-      redirect_to login_path, alert: 'Student does not exist!'
-    end
+    print_payment_status(payment_status, payment_status_messages)
   end
 
   private

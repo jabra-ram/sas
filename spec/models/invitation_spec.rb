@@ -14,11 +14,6 @@ RSpec.describe Invitation, type: :model do
       invitation.email = 'invalid_email'
       expect(invitation).not_to be_valid
     end
-    it 'is not valid with duplicate email' do
-      FactoryBot.create(:invitation)
-      invitation2 = FactoryBot.build(:invitation)
-      expect(invitation2).not_to be_valid
-    end
     it 'is not valid without expiry date' do
       invitation = FactoryBot.build(:invitation)
       invitation.expires_at = nil

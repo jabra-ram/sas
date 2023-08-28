@@ -15,8 +15,8 @@ RSpec.describe Notification, type: :model do
     describe '.unread' do
       it 'returns notifications with read_status false' do
         admin = FactoryBot.create(:admin)
-        unread_notification = FactoryBot.create(:notification, recipient: admin, read_status: false)
-        read_notification = FactoryBot.create(:notification, recipient: admin, read_status: true)
+        unread_notification = FactoryBot.create(:notification, sender_id: 99, recipient: admin, read_status: false)
+        read_notification = FactoryBot.create(:notification, sender_id: 99, recipient: admin, read_status: true)
 
         expect(described_class.unread).to include(unread_notification)
         expect(described_class.unread).not_to include(read_notification)

@@ -1,0 +1,87 @@
+<div class='container'>
+  <button onclick='history.back()' class='btn btn-info float-end'>Go Back</button>
+  <h1 class="text-center m-2"> Payment Details </h1>
+  <div class="col-lg-5 m-auto mb-5">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Student Name</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.student[:name] %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Email</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.student[:email] %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Contact</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.student[:contact_number] %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Class</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.student.class_category[:classname] %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Mode of Payment</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.mode_of_payment %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Amount</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.amount %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Status</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.status %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-4">
+            <p class="mb-0">Date and Time of Payment</p>
+          </div>
+          <div class="col-sm-8">
+            <p class="text-muted mb-0"><%= @payment.created_at %></p>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="d-flex justify-content-start">
+      <%= link_to 'Send Pdf', generate_invoice_path(@payment), class:'btn btn-info mx-2' %>
+      <%= link_to 'Send Email', email_invoice_path(@payment), class:'btn btn-info mx-2' %>
+      <%= link_to 'Edit Payment', edit_payment_path(@payment), class:'btn btn-warning mx-2' %>
+    </div>
+  </div>
+</div>
