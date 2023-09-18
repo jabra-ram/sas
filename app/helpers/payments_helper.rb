@@ -7,13 +7,23 @@ module PaymentsHelper
       flash.now[:alert] = 'payment for this student already exists!!!'
       return render :new
     end
-    if @payment.save
+    check_fee_structure
+  end
+  # rubocop :disable Metrics/AbcSize
+
+  def check_fee_structure
+    student = Student.find(payment_params[:student_id])
+    if student.class_category.fee_structure.nil?
+      flash.now[:alert] = 'Fee structure for the class of student does not exist, hence total payment is unknown.'
+      render :new
+    elsif student&.class_category&.fee_structure && @payment.save
       send_payment_notification if %w[Rejected Pending].include?(@payment[:status])
       redirect_to payments_path, notice: 'Record saved!'
     else
       render :new
     end
   end
+  # rubocop :enable Metrics/AbcSize
 
   def send_payment_notification
     student_name = @payment.student.name

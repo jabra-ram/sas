@@ -3,7 +3,7 @@
 # This is Admins Controller
 class AdminsController < ApplicationController
   include AdminsHelper
-  before_action :authorize, only: [:index]
+  # before_action :authorize, only: [:index]
   skip_before_action :verify_authenticity_token, only: :mark_read
 
   def invite

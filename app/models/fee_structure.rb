@@ -15,4 +15,5 @@ class FeeStructure < ApplicationRecord
   validates :id_card_fees, presence: { message: "id card can't be empty" },
                            numericality: { greater_than_or_equal_to: 0, message: 'must be non-negative' }
   validates :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  scope :exist_for_class_category, ->(class_category_id) { where(class_category_id:) }
 end

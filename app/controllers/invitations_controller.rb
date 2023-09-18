@@ -2,8 +2,6 @@
 
 # This is invitation controller
 class InvitationsController < ApplicationController
-  before_action :authorize
-
   def new
     @invitation = Invitation.new
   end

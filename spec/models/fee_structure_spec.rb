@@ -72,5 +72,23 @@ RSpec.describe FeeStructure, type: :model do
       expect(fee_structure).not_to be_valid
     end
   end
+  describe '.exist_for_class_category' do
+    let!(:class_category1) { FactoryBot.create(:class_category, classname: '1') }
+    let!(:class_category2) { FactoryBot.create(:class_category, classname: '2') }
+    let!(:class_category3) { FactoryBot.create(:class_category, classname: '3') }
+    let!(:record1) { FactoryBot.create(:fee_structure, class_category: class_category1) }
+    let!(:record2) { FactoryBot.create(:fee_structure, class_category: class_category2) }
+
+    it 'returns records with a matching class_category_id' do
+      records = FeeStructure.exist_for_class_category(class_category1.id)
+      expect(records).to include(record1)
+      expect(records).not_to include(record2)
+    end
+
+    it 'returns an empty relation when no records match the class_category_id' do
+      records = FeeStructure.exist_for_class_category(class_category3.id)
+      expect(records).to be_empty
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

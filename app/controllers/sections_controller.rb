@@ -2,8 +2,6 @@
 
 # This is sections controller
 class SectionsController < ApplicationController
-  before_action :authorize
-
   def index
     @sections = Section.all.order(section: :asc)
   end

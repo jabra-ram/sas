@@ -32,5 +32,27 @@ RSpec.describe Invitation, type: :model do
       expect(invitation.email).to eq('test@example.com')
     end
   end
+  describe '#admin_exists' do
+    let(:admin_email) { 'admin@example.com' }
+    let(:invitation) { FactoryBot.build(:invitation, email: admin_email) }
+
+    context 'when an admin with the same email exists' do
+      before do
+        FactoryBot.create(:admin, email: admin_email)
+      end
+
+      it 'adds an error to the invitation' do
+        expect { invitation.save }.to change {
+          invitation.errors[:email]
+        }.from([]).to(['admin already exists with this email!'])
+      end
+    end
+
+    context 'when an admin with the same email does not exist' do
+      it 'does not add an error to the invitation' do
+        expect { invitation.save }.not_to(change { invitation.errors.count })
+      end
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength

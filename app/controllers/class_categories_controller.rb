@@ -2,7 +2,6 @@
 
 # This is class categories controller
 class ClassCategoriesController < ApplicationController
-  before_action :authorize
   include ClassCategoriesHelper
   def index
     @classes = ClassCategory.all.order_by_name
@@ -26,8 +25,11 @@ class ClassCategoriesController < ApplicationController
 
   def update
     @class_category = ClassCategory.find(params[:id])
+    sections = params[:class_category][:sections]
+    return redirect_to edit_class_category_path, alert: 'Choose atleast 1 section.' if sections.length <= 1
+
     @class_category.sections.destroy_all
-    update_and_save(params[:class_category][:sections], class_category_params)
+    update_and_save(sections, class_category_params)
   end
 
   def destroy
@@ -42,6 +44,6 @@ class ClassCategoriesController < ApplicationController
   private
 
   def class_category_params
-    params.require(:class_category).permit(:classname)
+    params.require(:class_category).permit(:classname, :sections)
   end
 end

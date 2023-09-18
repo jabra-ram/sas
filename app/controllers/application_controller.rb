@@ -2,6 +2,8 @@
 
 # This is application controller
 class ApplicationController < ActionController::Base
+  before_action :authorize
+  helper_method :current_admin
   rescue_from ActionController::RoutingError, with: :render_not_found
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
@@ -15,12 +17,10 @@ class ApplicationController < ActionController::Base
     @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
-  helper_method :current_admin
-
   def authorize
     return unless current_admin.nil?
 
-    redirect_to login_path, alert: 'Not Authorized!!!'
+    redirect_to login_path, alert: 'Please login to access!!!'
   end
 
   def search_obj(params, model)
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
       value = -1
       value = cls['id'] unless cls.nil?
     end
-    return results.where(col => value) unless col.nil? || col.empty?
+    return results.where_non_empty(col, value) unless col.nil? || col.empty?
 
     results
   end

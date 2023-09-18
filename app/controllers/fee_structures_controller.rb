@@ -2,7 +2,6 @@
 
 # This is Fee Structure controller
 class FeeStructuresController < ApplicationController
-  before_action :authorize
   def index
     @fee_structures = FeeStructure.all
   end
@@ -13,7 +12,7 @@ class FeeStructuresController < ApplicationController
 
   def create
     @fee_structure = FeeStructure.new(fee_structure_params)
-    if FeeStructure.where(class_category_id: params[:fee_structure][:class_category_id]).empty? == false
+    if FeeStructure.exist_for_class_category(params[:fee_structure][:class_category_id]).any?
       flash.now[:alert] = 'Fee Structure already exist for this class!'
       render :new
     elsif @fee_structure.save

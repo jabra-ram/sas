@@ -2,6 +2,7 @@
 
 # This is sessions controller
 class SessionsController < ApplicationController
+  skip_before_action :authorize, only: %i[new create]
   def new
     redirect_to admins_path, notice: 'You are already logged in!' if current_admin
     @admin = Admin.new

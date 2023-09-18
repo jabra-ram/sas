@@ -3,6 +3,7 @@
 # This is students controller
 class StudentsController < ApplicationController
   include StudentsHelper
+  skip_before_action :authorize, only: [:payment_status]
   def index
     @students = Student.all.order(:id)
   end
