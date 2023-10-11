@@ -163,8 +163,6 @@ RSpec.describe Student, type: :model do
       expect(indexed_json[:date_of_birth]).to eq(Date.parse('02-03-2016'))
       expect(indexed_json).to have_key(:academic_year)
       expect(indexed_json[:academic_year]).to eq(2023)
-      expect(indexed_json).to have_key(:age)
-      expect(indexed_json[:age]).to eq(6)
       expect(indexed_json).to have_key(:father_name)
       expect(indexed_json[:father_name]).to eq('rajesh verma')
       expect(indexed_json).to have_key(:mother_name)

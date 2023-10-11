@@ -22,7 +22,7 @@
             <td><%= a.class_category[:classname] %></td>
             <td><%= a.date_of_birth_after %></td>
             <td><%= a.date_of_birth_before %></td>
-            <td><%= a.age %></td>
+            <td><%= a.date_as_on.year - a.date_of_birth_before.year %></td>
             <td><%= a.date_as_on %></td>
             <td><%= link_to 'Edit', edit_age_criterium_path(a), class:'btn btn-warning' %></td>
             <td>

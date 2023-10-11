@@ -18,7 +18,6 @@ class Student < ApplicationRecord
                               message: 'invalid email' },
                     uniqueness: { message: 'email is already taken' }
   validates :date_of_birth, presence: { message: 'enter valid date' }
-  validates :age, presence: true, numericality: { greater_than: 3, message: 'must be greater than 3' }
   validates :academic_year, presence: { message: 'year cannot be null' },
                             numericality: { greater_than: 2011, less_than_or_equal_to: Date.today.year,
                                             message: 'enter a valid year' }
@@ -28,19 +27,20 @@ class Student < ApplicationRecord
   validates :contact_number,  presence: { message: 'contact number cannot be null' },
                               length: { minimum: 8, maximum: 10, message: 'enter valid number' },
                               numericality: { greater_than: 0, message: 'enter a valid  number' }
-  before_save :valid_age_for_class
+  validate :valid_age_for_class
 
   def valid_age_for_class
-    unless class_category&.age_criterium
+    age_criteria = class_category&.age_criterium
+    dob = date_of_birth
+    unless age_criteria
       errors.add(:base,
                  'please add age criteria for the class, without age criteria the required age cannot be determined!')
-      throw(:abort)
+      return
     end
-    age_criteria = class_category.age_criterium
-    return if age_criteria.date_of_birth_after <= date_of_birth && age_criteria.date_of_birth_before >= date_of_birth
+
+    return if dob && age_criteria.date_of_birth_after <= dob && age_criteria.date_of_birth_before >= dob
 
     errors.add(:base, 'The age criteria for the class does not allow the student to be admitted!')
-    throw(:abort)
   end
 
   def self.index_data
@@ -54,7 +54,6 @@ class Student < ApplicationRecord
       indexes :name, type: :text, analyzer: :english, fielddata: true
       indexes :email, type: :text, analyzer: :english, fielddata: true
       indexes :academic_year, type: :text, analyzer: :english, fielddata: true
-      indexes :age, type: :text
       indexes :address, type: :text, analyzer: :english
       indexes :father_name, type: :text, analyzer: :english, fielddata: true
       indexes :mother_name, type: :text, analyzer: :english
@@ -74,7 +73,6 @@ class Student < ApplicationRecord
       academic_year: academic_year,
       address: address,
       date_of_birth: date_of_birth,
-      age: age,
       class_category_id: class_category_id,
       section_id: section_id,
       father_name: father_name,
@@ -95,7 +93,7 @@ class Student < ApplicationRecord
             {
               multi_match: {
                 query:,
-                fields: %i[id name email date_of_birth address age academic_year classname father_name mother_name contact_number]
+                fields: %i[id name email date_of_birth address academic_year classname father_name mother_name contact_number]
               }
             }
           ]

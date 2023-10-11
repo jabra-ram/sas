@@ -7,7 +7,6 @@ FactoryBot.define do
     name { 'mohit verma' }
     email { 'mohit@gmail.com' }
     date_of_birth { '02-03-2016' }
-    age { 6 }
     academic_year { '2023' }
     father_name { 'rajesh verma' }
     mother_name { 'menka verma' }

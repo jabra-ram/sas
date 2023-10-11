@@ -17,7 +17,6 @@
     <div class='mb-3 col-md-6'>
       <%= f.label :age, class:'form-label' %>
       <%= f.number_field :age, class:'form-control', readonly: true, id:'age' %>
-      <p class='text-danger'><%= show_errors(@age_criteria, :age) %></p>
     </div>
     <div class='mb-3 col-md-6'>
       <%= f.label :date_as_on, class:'form-label required' %>

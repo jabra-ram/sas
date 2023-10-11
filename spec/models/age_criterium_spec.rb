@@ -26,11 +26,6 @@ RSpec.describe AgeCriterium, type: :model do
       age_criteria.date_as_on = nil
       expect(age_criteria).not_to be_valid
     end
-    it 'is not valid without age' do
-      age_criteria = FactoryBot.build(:age_criterium)
-      age_criteria.age = nil
-      expect(age_criteria).not_to be_valid
-    end
   end
   describe '.exist_for_class_category' do
     let!(:class_category1) { FactoryBot.create(:class_category, classname: '1') }

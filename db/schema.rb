@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_24_062644) do
+ActiveRecord::Schema.define(version: 2023_10_10_074306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2023_08_24_062644) do
   create_table "age_criteria", force: :cascade do |t|
     t.date "date_of_birth_after", null: false
     t.date "date_of_birth_before", null: false
-    t.integer "age", null: false
     t.date "date_as_on", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -123,7 +122,6 @@ ActiveRecord::Schema.define(version: 2023_08_24_062644) do
     t.string "name", null: false
     t.string "email", null: false
     t.date "date_of_birth", null: false
-    t.integer "age", null: false
     t.integer "academic_year", null: false
     t.string "father_name", null: false
     t.string "mother_name", null: false

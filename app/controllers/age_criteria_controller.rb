@@ -48,6 +48,6 @@ class AgeCriteriaController < ApplicationController
 
   def age_criteria_params
     params.require(:age_criterium).permit(:class_category_id, :date_of_birth_after, :date_of_birth_before,
-                                          :age, :date_as_on)
+                                          :date_as_on)
   end
 end
